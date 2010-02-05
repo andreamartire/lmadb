@@ -13,6 +13,15 @@ alla fine avrete nella vostra workspace il progetto lmadb...
 
 nel package sql di questo progetto troverete lo script sql per caricare il db
 
+ora dovete importare i driver oracle nel progetto. Per far questo click destro sul progetto e scegliete properties, poi java build path e libraries <br>
+eliminate la ojdbc14 che c'è e cliccate su add external jars <br>
+   su ubuntu inserite: /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/jdbc/lib/ojdbc14.jar <br>
+   su windows: C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib\ojdbc14.jar<br>
+
+per testare la corretta installazione dei driver oracle eseguite la classe TestInstallazione nel package TestJDBC
+
+a questo punto se avete installato i driver correttamente dovreste, dopo aver inserito username e password anche casuali, ricevere un messaggio di conferma che i driver sono ok, e subito dopo ovviamente il mess che la connessione al db non è riuscita...al prox paragrafo facciamo anche questa parte...
+
 === IMPORTANTE ===
 
 ogni volta che si apre eclipse per lavorare sul progetto lmadb bisogna fare l'update, click destro sul progetto -> team -> update to head
@@ -52,4 +61,14 @@ se tutto è andato bene dovreste vedere: Statement Processed 16, successful 16, 
 a questo punto il db è caricato sul server oracle...per vederlo potete tornare alla home e scegliere Object Browser
 
 
+= JDBC =
 
+una volta arrivati qua dovreste avere tutto funzionante...per avere conferma eseguite nuovamente la classe TestInstallazione, questa volta con username e password dell'account DBA che avete creato su oracle, dovreste ricevere messaggi di conferma che è tutto ok, altrimenti preoccupatevi...
+
+Se è tutto ok potete passare a provare le altre classi di test nonchè crearne altre voi per familiarizzare con jdbc....
+
+= TOMCAT = 
+
+TODO
+
+ENJOY!
