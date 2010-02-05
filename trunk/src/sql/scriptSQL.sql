@@ -19,6 +19,33 @@ CREATE TABLE Account (
 				FOREIGN KEY (personale) REFERENCES Personale(matricola)
 );
 
+CREATE TABLE  Fornitore ( 
+				partita_iva VARCHAR(11), 
+				nome_organizzazione VARCHAR(20), 
+				tipologia VARCHAR(20),
+				telefono VARCHAR(20),
+				email VARCHAR(40),
+				indirizzo VARCHAR(50),
+						
+				PRIMARY KEY ( partita_iva )
+);
+	
+CREATE TABLE CategoriaBene ( 
+				sigla VARCHAR(20),
+				nome VARCHAR(50),
+				
+				PRIMARY KEY ( sigla )
+);
+	
+CREATE TABLE SottoCategoriaBene ( 
+				codice VARCHAR(10), 
+				nome VARCHAR(20), 
+				categoria_bene VARCHAR(20),
+						
+				PRIMARY KEY ( codice ),
+				FOREIGN KEY ( categoria_bene ) REFERENCES CategoriaBene ( sigla )
+);
+
 CREATE TABLE Bene (
 				numero_inventario_generico INTEGER,
 				numero_inventario_seriale INTEGER,
@@ -27,8 +54,8 @@ CREATE TABLE Bene (
 				garanzia VARCHAR(50),
 				data_attivazione DATE,
 				data_scadenza DATE,
-				conforme VARCHAR(1),
-				obsoleto VARCHAR(1),
+				conforme CHAR(1),
+				obsoleto CHAR(1),
 				sotto_categoria_bene VARCHAR(10),
 				fornitore VARCHAR(11),
 
@@ -55,33 +82,6 @@ CREATE TABLE Finanziamento(
 				PRIMARY KEY (bando, numero_progressivo),
 				FOREIGN KEY (bando) REFERENCES Bando(codice),
 				FOREIGN KEY (bene) REFERENCES Bene ( numero_inventario_generico )
-);
-
-CREATE TABLE  Fornitore ( 
-				partita_iva VARCHAR(11), 
-				nome_organizzazione VARCHAR(20), 
-				tipologia VARCHAR(20),
-				telefono VARCHAR(20),
-				email VARCHAR(40),
-				indirizzo VARCHAR(50),
-						
-				PRIMARY KEY ( partita_iva )
-);
-	
-CREATE TABLE SottoCategoriaBene ( 
-				codice VARCHAR(10), 
-				nome VARCHAR(20), 
-				categoria_bene VARCHAR(20),
-						
-				PRIMARY KEY ( codice ),
-				FOREIGN KEY ( categoria_bene ) REFERENCES CategoriaBene ( sigla )
-);
-
-CREATE TABLE CategoriaBene ( 
-				sigla VARCHAR(20),
-				nome VARCHAR(50),
-				
-				PRIMARY KEY ( sigla )
 );
 
 CREATE TABLE Dotazione ( 
@@ -113,7 +113,7 @@ CREATE TABLE Assegnazione(
 			  	note VARCHAR(50),
 			  	
 			  	PRIMARY KEY ( codice ),
-			  	FOREIGN KEY ( gruppo_di_lavoro ) REFERENCES Gruppodilavoro ( codice ),
+			  	FOREIGN KEY ( gruppo_di_lavoro ) REFERENCES GruppoDiLavoro ( codice ),
 			  	FOREIGN KEY ( bene ) REFERENCES Bene ( numero_inventario_generico )
 );
 
@@ -139,7 +139,7 @@ CREATE TABLE Allocazione(
 			 	
 			 	PRIMARY KEY(codice),
 			 	FOREIGN KEY(matricola) REFERENCES Personale(matricola),
-			 	FOREIGN KEY(gruppo_di_lavoro) REFERENCES Gruppodilavoro( codice )
+			 	FOREIGN KEY(gruppo_di_lavoro) REFERENCES GruppoDiLavoro( codice )
 );
 
 CREATE TABLE Stanza(
@@ -148,7 +148,7 @@ CREATE TABLE Stanza(
 		    	posizione VARCHAR(10),
 		    	note VARCHAR(50),
 		   		
-		   		PRIMARY KEY(codice)
+		   		PRIMARY KEY (codice)
 );
 
 CREATE TABLE Ubicazione(

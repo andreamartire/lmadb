@@ -4,11 +4,20 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 
+/** Classe per popolare facilmente le tabelle del db a partire da un file scritto nel modo più intuitivo<p>
+ *  Ovviamente ancora non sono gestite diverse eccezzioni come campi non presenti ecc
+ * 
+ * @author sal
+ */
 public class ImportSQLScript {
 	
+	/** parametri di accesso al db...ovviamente ognuno deve mettere i suoi! */
 	static String username = "database";
 	static String pass = "asd";
+	
+	/** questo url è standard per oracle */
 	static String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	
 	static Connection connection;
 	static PreparedStatement pst;
 	static Statement st;
@@ -48,7 +57,6 @@ public class ImportSQLScript {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	private static void init() throws Exception {
