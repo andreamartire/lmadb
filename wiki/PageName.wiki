@@ -1,6 +1,6 @@
 = Istruzioni base =
 
-= GoogleCode? SVN =
+= [GoogleCode] SVN =
 
 Prima di tutto bisogna installare Subclipse:
 In eclipse andate su "help" -> "install new software". Cliccate su Add e mettete come nome Subclipse e come location: http://subclipse.tigris.org/update_1.6.x <br>
@@ -18,7 +18,7 @@ eliminate la ojdbc14 che c'è e cliccate su add external jars <br>
    su ubuntu inserite: /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/jdbc/lib/ojdbc14.jar <br>
    su windows: C:\oraclexe\app\oracle\product\10.2.0\server\jdbc\lib\ojdbc14.jar<br>
 
-per testare la corretta installazione dei driver oracle eseguite la classe TestInstallazione nel package TestJDBC
+per testare la corretta installazione dei driver oracle eseguite la classe [TestInstallazione] nel package TestJDBC
 
 a questo punto se avete installato i driver correttamente dovreste, dopo aver inserito username e password anche casuali, ricevere un messaggio di conferma che i driver sono ok, e subito dopo ovviamente il mess che la connessione al db non è riuscita...al prox paragrafo facciamo anche questa parte...
 
@@ -63,7 +63,7 @@ a questo punto il db è caricato sul server oracle...per vederlo potete tornare 
 
 = JDBC =
 
-una volta arrivati qua dovreste avere tutto funzionante...per avere conferma eseguite nuovamente la classe TestInstallazione, questa volta con username e password dell'account DBA che avete creato su oracle, dovreste ricevere messaggi di conferma che è tutto ok, altrimenti preoccupatevi...
+una volta arrivati qua dovreste avere tutto funzionante...per avere conferma eseguite nuovamente la classe [TestInstallazione], questa volta con username e password dell'account DBA che avete creato su oracle, dovreste ricevere messaggi di conferma che è tutto ok, altrimenti preoccupatevi...
 
 Se è tutto ok potete passare a provare le altre classi di test nonchè crearne altre voi per familiarizzare con jdbc....
 
