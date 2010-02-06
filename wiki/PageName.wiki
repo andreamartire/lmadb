@@ -1,6 +1,6 @@
 = Istruzioni base =
 
-= GoogleCode SVN =
+= GoogleCode? SVN =
 
 Prima di tutto bisogna installare Subclipse:
 In eclipse andate su "help" -> "install new software". Cliccate su Add e mettete come nome Subclipse e come location: http://subclipse.tigris.org/update_1.6.x <br>
