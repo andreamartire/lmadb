@@ -41,11 +41,12 @@ a questo punto il db è caricato sul server oracle...per vederlo potete tornare 
   
 = TOMCAT =
   
+=== Ottenere Tomcat 6.x ===
 Scaricare la versione 6 di tomcat: <br>
   * GNU/Linux - http://apache.panu.it/tomcat/tomcat-6/v6.0.24/bin/apache-tomcat-6.0.24.tar.gz
   * Windows - http://apache.panu.it/tomcat/tomcat-6/v6.0.24/bin/apache-tomcat-6.0.24.exe
   
-Installazione
+=== Installazione ===
 
   * GNU/Linux: 
   		Estrarre l'archivio e copiare la cartella tomcat estratta nella directory 
@@ -76,7 +77,7 @@ Per testare ulteriormente il server web creare un file test.html nella directory
 Da browser inserire http://127.0.0.1:8181/test.html, il risultato dovrebbe essere
 una pagina dal titolo "Test Tomcat" e contenente "Prova andata a buon fine"
 
-Configurazione di tomcat <br>
+=== Configurazione di tomcat === <br>
 		Copiare i driver JDBC del DBMS nella cartella lib di tomcat <br>
   		(Windows > C:\Programmi\Apache Software Foundation\Tomcat 6.0\lib <br>   		GNU/Linux > /usr/local/tomcat/lib ). <br>
   		Per Oracle copiare il jar <a href="http://download.oracle.com/otn/utilities_drivers/jdbc/10204/ojdbc14.jar">ojdbc14.jar</a><br>
@@ -95,15 +96,15 @@ Configurazione di tomcat <br>
 }}}
 		Salvare il file e passare ad eclipse.
 
-Integrazione in Eclipse EE
+=== Integrazione in Eclipse EE ===
 
-1. Creare il server tomcat per eclipse
+1. ===== Creare il server tomcat per eclipse =====
   * New -> Other -> Server -> Server
   * Server's Host Name: localhost
   * Select the server type -> Apache -> tomcat v6.0 Server
   * finish
   
-2. Importare il progetto
+2. ===== Importare il progetto =====
 
   * installare Subclipse:
     In eclipse andate su "help" -> "install new software". Cliccate su Add e mettete come nome Subclipse e come location: http://			  subclipse.tigris.org/update_1.6.x <br>
@@ -114,7 +115,7 @@ Integrazione in Eclipse EE
   * https://lmadb.googlecode.com/svn/trunk 
   * vi chiederà di inserire il vostro username e la vostra password googlecode (la pass si trova in "Profile" -> "Settings" da http://code.google.com)
   
-3. 	Stoppare il server tomcat se avviato 
+3. Stoppare il server tomcat se avviato 
   * Windows: click destro sull'icona di tomcat nella barra delle applicazione, e selezionare Stop Service; 
     Per evitare che si avvii automaticamente: click destro -> Configure -> Startup type: Manual -> Stop -> Ok
   * GNU/Linux: eseguire lo script shutdown.sh
