@@ -1,0 +1,126 @@
+#labels Phase-Deploy,Phase-Implementation
+_Lo scopo della guida è installare il DBMS Oracle e il web-server tomcat e configurarli in modo da permettere la gestione direttamente da eclipse_
+
+=== Requisiti minimi: ===
+  * Java Development Kit - jdk
+  * Eclipse for Java EE
+  * Un po di pazienza e molta attenzione
+  
+= DBMS =
+
+=== Installazione di oracle: ===
+    Windows -> scaricare e installare <a href="http://download.oracle.com/otn/nt/oracle10g/xe/10201/OracleXE.exe">questo exe</a> <br>
+    GNU/Linux -> scaricare <a href="http://download.oracle.com/otn/linux/oracle10g/xe/10201/oracle-xe_10.2.0.1-1.0_i386.deb>questo deb</a>
+
+=== Configurare oracle === 
+    GNU/Linux -> `sudo /etc/init.d/oracle-xe configure` inserite una pass, infine scegliete se avviarlo automaticamente o no<br>
+    Windows -> durante l'installazione viene chiesta la pass e viene visualizzata una finestra con le info necessarie
+
+=== Far partire il server oracle ===
+    GNU/Linux -> `sudo /etc/init.d/oracle-xe start` oppure `sh /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/config/scripts/startdb.sh`<br>
+    Windows -> viene installato come servizio quindi parte sempre all'avvio..
+
+=== Primo avvio ===
+nel vostro browser preferito andate all'indirizzo: http://localhost:8080/apex <br>
+appare la pagina di login in oracle, inserite "system" come username e come password quella scelta in fase di configurazione <br>
+ora siete nella pagina di gestione del dbms. Administration -> DataBase Users -> Create per creare il vostro account <br>
+scegliete una username e una password e spuntate la casellina DBA dopo di che cliccate su create <br>
+ora effettuate il logout e poi il login con l'account appena creato <br>
+
+questa è l'interfaccia da DBA, per creare tabelle graficamente andate in Object Browser -> Create, per scrivere codice SQL andate in SQL -> SQL Commands <br>
+
+per caricare lo script di creazione del nostro db andate in SQL -> SQL Scripts <br>
+qui scegliete la View "Details" e cliccate su Go <br>
+dovreste vedere "no data found"...per caricare lo script cliccate sul pulsante Upload, sfoglia per arrivare al file e poi Upload <br>
+ora trovate il file nella tabella, cliccate sul semaforino Run e poi confermate col pulsante Run <br>
+per vedere il risultato dell'importazione cliccate su View Results<br>
+se tutto è andato bene dovreste vedere: Statement Processed 16, successful 16, With Errors 0 <br>
+
+a questo punto il db è caricato sul server oracle...per vederlo potete tornare alla home e scegliere Object Browser
+  
+  
+= TOMCAT =
+  
+Scaricare la versione 6 di tomcat: <br>
+  * GNU/Linux - http://apache.panu.it/tomcat/tomcat-6/v6.0.24/bin/apache-tomcat-6.0.24.tar.gz
+  * Windows - http://apache.panu.it/tomcat/tomcat-6/v6.0.24/bin/apache-tomcat-6.0.24.exe
+  
+Installazione
+
+  * GNU/Linux: 
+  		Estrarre l'archivio e copiare la cartella tomcat estratta nella directory 
+  		in cui si vuole installarlo. (in questo esempio /usr/local/tomcat)<br>
+  		Per avviare il server: sh /usr/local/tomcat/bin/startup.sh<br>
+  		Per fermare il server: sh /usr/local/tomcat/bin/shutdown.sh
+  		
+  * Windows: 
+  		Eseguire l'eseguibile scaricato e seguire l'installazione. Scegliere "full" come tipo di installazione. Scegliere la porta 8181 e impostare uno username e una password. <br> 
+  		A fine installazione scegliere di avviare tomcat.<br>
+  		Tomcat verrà installato nella directory: C:\Programmi\Apache Software Foundation\Tomcat 6.0
+  	
+Una volta installato ed avviato il server aprire un browser e inserire http://127.0.0.1:8181/ nella barra degli indirizzi; se viene visualizzata la pagina di benvenuto di tomcat l'installazione è andata a buon fine.
+
+Per testare ulteriormente il server web creare un file test.html nella directory webapps/ROOT di tomcat, contenente questo testo:
+
+{{{
+<html>
+<head>
+	<title>Test Tomcat</title>
+</head>
+<body>
+	<h1>Prova andata a buon fine</h1>
+</body>
+</html>
+}}}
+
+Da browser inserire http://127.0.0.1:8181/test.html, il risultato dovrebbe essere
+una pagina dal titolo "Test Tomcat" e contenente "Prova andata a buon fine"
+
+Configurazione di tomcat <br>
+		Copiare i driver JDBC del DBMS nella cartella lib di tomcat <br>
+  		(Windows > C:\Programmi\Apache Software Foundation\Tomcat 6.0\lib <br>   		GNU/Linux > /usr/local/tomcat/lib ). <br>
+  		Per Oracle copiare il jar <a href="http://download.oracle.com/otn/utilities_drivers/jdbc/10204/ojdbc14.jar">ojdbc14.jar</a><br>
+  		Per postgreSQL copiare il jar <a href="http://jdbc.postgresql.org/download/postgresql-8.4-701.jdbc4.jar">postgresql-8.4-701.jdbc4.jar</a>
+		
+		Aprire il file context.xml nella cartella conf di tomcat con un editor di testo e sostituire la
+		parte interna al tag <context> </context> con la seguente:<br>
+		{{{
+		<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxActive="4" maxIdle="2" 
+		maxWait="5000" name="jdbc/oraclexe" password="TUAPASSWORD" type="javax.sql.DataSource" 
+		url="jdbc:oracle:thin:@localhost:1521:xe" username="TUOUSERNAME"/>
+
+		<Resource auth="Container" driverClassName="org.postgresql.Driver" maxActive="4" maxIdle="2" 
+		maxWait="5000" name="jdbc/postgres" password="TUAPASSWORD" type="javax.sql.DataSource" 
+		url="jdbc:postgresql://localhost/sal" username="postgres"/>
+}}}
+		Salvare il file e passare ad eclipse.
+
+Integrazione in Eclipse EE
+
+1. Creare il server tomcat per eclipse
+  * New -> Other -> Server -> Server
+  * Server's Host Name: localhost
+  * Select the server type -> Apache -> tomcat v6.0 Server
+  * finish
+  
+2. Importare il progetto
+
+  * installare Subclipse:
+    In eclipse andate su "help" -> "install new software". Cliccate su Add e mettete come nome Subclipse e come location: http://			  subclipse.tigris.org/update_1.6.x <br>
+    si caricherà il repository, quindi spuntate la casella Subclipse e installate (riavviate eclipse alla fine). 
+
+  * New -> SVN -> Checkout Project from SVN
+  * "Create a new Repository location"
+  * https://lmadb.googlecode.com/svn/trunk 
+  * vi chiederà di inserire il vostro username e la vostra password googlecode (la pass si trova in "Profile" -> "Settings" da http://code.google.com)
+  
+3. 	Stoppare il server tomcat se avviato 
+  * Windows: click destro sull'icona di tomcat nella barra delle applicazione, e selezionare Stop Service; 
+    Per evitare che si avvii automaticamente: click destro -> Configure -> Startup type: Manual -> Stop -> Ok
+  * GNU/Linux: eseguire lo script shutdown.sh
+
+4. Avviare Oracle. Aprire la servlet Login.java nel default package del progetto ed eseguirla: 
+	click destro sulla classe -> Run As -> Run on Server.
+	Nella finestra che appare spuntare "Always use this server when running this project" -> finish<br>
+	Inserire una username e una password nel form che dovrebbe apparire e vedere
+	il risultato che dovrebbe essere una nuova pagina. 
