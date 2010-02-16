@@ -10,12 +10,12 @@ public class TestInstallazione {
 	static String pass;
 	
 	/** stringhe di connessione */
-	static String postgresurl = "jdbc:postgresql://localhost/postgres";
-	static String oracleurl = "jdbc:oracle:thin:@localhost:1521:xe";
+	public static String postgresurl = "jdbc:postgresql://localhost/postgres";
+	public static String oracleurl = "jdbc:oracle:thin:@localhost:1521:xe";
 	
 	/** drivers */
-	static String oracledriver = "oracle.jdbc.driver.OracleDriver";
-	static String postgresdriver = "org.postgresql.Driver";
+	public static String oracledriver = "oracle.jdbc.driver.OracleDriver";
+	public static String postgresdriver = "org.postgresql.Driver";
 	
 	public static void main(String[] args) {
 		
