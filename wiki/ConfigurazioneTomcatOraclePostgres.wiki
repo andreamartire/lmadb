@@ -51,6 +51,12 @@ Scaricare la versione 6 di tomcat: <br>
   * GNU/Linux: 
   		Estrarre l'archivio e copiare la cartella tomcat estratta nella directory 
   		in cui si vuole installarlo. (in questo esempio /usr/local/tomcat)<br>
+  		Aprire come root il file conf/server.xml e cambiare porta da 8080 a 8181:
+  		{{{  		
+  		<Connector port="8181" protocol="HTTP/1.1" 
+                connectionTimeout="20000" 
+                redirectPort="8443" />
+  		}}}
   		Per avviare il server: sh /usr/local/tomcat/bin/startup.sh<br>
   		Per fermare il server: sh /usr/local/tomcat/bin/shutdown.sh
   		
@@ -65,12 +71,12 @@ Per testare ulteriormente il server web creare un file test.html nella directory
 
 {{{
 <html>
-<head>
-	<title>Test Tomcat</title>
-</head>
-<body>
-	<h1>Prova andata a buon fine</h1>
-</body>
+  <head>
+    <title>Test Tomcat</title>
+  </head>
+  <body>
+    <h1>Prova andata a buon fine</h1>
+  </body>
 </html>
 }}}
 
@@ -85,14 +91,14 @@ una pagina dal titolo "Test Tomcat" e contenente "Prova andata a buon fine"
 		
 		Aprire il file context.xml nella cartella conf di tomcat con un editor di testo e sostituire la
 		parte interna al tag <context> </context> con la seguente:<br>
-		{{{
-		<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxActive="4" maxIdle="2" 
-		maxWait="5000" name="jdbc/oraclexe" password="TUAPASSWORD" type="javax.sql.DataSource" 
-		url="jdbc:oracle:thin:@localhost:1521:xe" username="TUOUSERNAME"/>
+{{{
+<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxActive="4" maxIdle="2" 
+maxWait="5000" name="jdbc/oraclexe" password="TUAPASSWORD" type="javax.sql.DataSource" 
+url="jdbc:oracle:thin:@localhost:1521:xe" username="TUOUSERNAME"/>
 
-		<Resource auth="Container" driverClassName="org.postgresql.Driver" maxActive="4" maxIdle="2" 
-		maxWait="5000" name="jdbc/postgres" password="TUAPASSWORD" type="javax.sql.DataSource" 
-		url="jdbc:postgresql://localhost/sal" username="postgres"/>
+<Resource auth="Container" driverClassName="org.postgresql.Driver" maxActive="4" maxIdle="2" 
+maxWait="5000" name="jdbc/postgres" password="TUAPASSWORD" type="javax.sql.DataSource" 
+url="jdbc:postgresql://localhost/sal" username="postgres"/>
 }}}
 		Salvare il file e passare ad eclipse.
 
