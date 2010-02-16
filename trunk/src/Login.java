@@ -2,7 +2,7 @@ import java.io.*;
 import java.sql.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import jdbc.TestInstallazione;
+import jdbc.JDBC;
 
 /**
  * Servlet implementation class TestServlet
@@ -10,43 +10,29 @@ import jdbc.TestInstallazione;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	Connection conn;
+	Connection connection;
 	
 	public void init() {
 		
 		try {
-			Class.forName( TestInstallazione.oracledriver );
+			Class.forName( JDBC.oracleDriver );
 		} catch (ClassNotFoundException e) {
 			System.err.println("Driver error");
 			e.printStackTrace();
 		}
 		
 		try {
-			conn = DriverManager.getConnection( TestInstallazione.oracleurl, "sal", "asd" );
+			connection = DriverManager.getConnection( JDBC.oracleUrl, "sal", "asd" );
 		} catch (SQLException e) {
 			System.err.println("Connection error");
 			e.printStackTrace();
 		}
-		
-		/* Metodo alternativo */
-//		try {
-//			// creo la connessione al dbms
-//			// NB: va aggiunta una risorsa nel file context.xml di tomcat per il dbms utilizzato
-//			InitialContext cx = new InitialContext();
-//			DataSource ds = (DataSource) cx.lookup( "java:comp/env/jdbc/oraclexe" );
-//			conn = ds.getConnection();
-//			
-//		} catch (NamingException e) {
-//			System.err.println("C'è qualche errore nel creare il context");
-//		} catch (SQLException e) {
-//			System.err.println("Non riesco a connettermi! segui la guida per la configurazione!");
-//		}
 	}
 	
 	public void destroy() {
 		try {
 			// chiudo la connessione quando la servlet viene distrutta
-			conn.close();
+			connection.close();
 		} catch (SQLException e) {
 			// se non si vuole chiudere si frega
 		}
@@ -87,7 +73,7 @@ public class Login extends HttpServlet {
 		
 		try {
 			// eseguo la query per cercare l'account con questo username
-			PreparedStatement st = conn.prepareStatement( "SELECT * FROM account WHERE username = ?" );
+			PreparedStatement st = connection.prepareStatement( "SELECT * FROM account WHERE username = ?" );
 			st.setString( 1, usr );
 			ResultSet rs = st.executeQuery();
 			

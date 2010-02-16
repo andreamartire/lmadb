@@ -9,21 +9,13 @@ public class TestInstallazione {
 	static String username;
 	static String pass;
 	
-	/** stringhe di connessione */
-	public static String postgresurl = "jdbc:postgresql://localhost/postgres";
-	public static String oracleurl = "jdbc:oracle:thin:@localhost:1521:xe";
-	
-	/** drivers */
-	public static String oracledriver = "oracle.jdbc.driver.OracleDriver";
-	public static String postgresdriver = "org.postgresql.Driver";
-	
 	public static void main(String[] args) {
 		
 		username = JOptionPane.showInputDialog("Username");
 		pass = JOptionPane.showInputDialog("Password");
 		
 		try {
-			Class.forName( oracledriver );
+			Class.forName( JDBC.oracleDriver );
 			JOptionPane.showMessageDialog(null, "I driver ci sono...vediamo se riesco a connettermi..", 
 					"Driver OK", JOptionPane.PLAIN_MESSAGE );
 		} catch (ClassNotFoundException e) {
@@ -34,7 +26,7 @@ public class TestInstallazione {
 		
 		Connection connection = null;
 		try {
-			connection = DriverManager.getConnection( oracleurl, username, pass );
+			connection = DriverManager.getConnection( JDBC.oracleUrl, username, pass );
 			
 			DatabaseMetaData data = connection.getMetaData();
 			JOptionPane.showMessageDialog(null, "Si sono riuscito!\nDriver in suo: \"" + 

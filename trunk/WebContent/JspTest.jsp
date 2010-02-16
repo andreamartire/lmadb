@@ -7,7 +7,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="jdbc.TestInstallazione"%>
-<%@page import="java.sql.DriverManager"%><html>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="jdbc.JDBC"%><html>
 <%! 
 Connection conn; %>
 <head>
@@ -17,8 +18,8 @@ Connection conn; %>
 <body>
 <table>
 <% 
-Class.forName( TestInstallazione.oracledriver );
-conn = DriverManager.getConnection( TestInstallazione.oracleurl, "sal", "asd" );
+Class.forName( JDBC.oracleDriver );
+conn = DriverManager.getConnection( JDBC.oracleUrl, "sal", "asd" );
 
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery("SELECT * FROM account");
@@ -26,8 +27,8 @@ while( rs.next() ) { %>
 	<tr>
 	<% for( int i = 1; i <= 2; i++ ) { %>
 		<td>
-		<% out.println( rs.getString(i) ); %>
-<% }
+		<% out.println( rs.getString(i) );
+	}
 }%>
 </table>
 </body>
