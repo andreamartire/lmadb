@@ -1,10 +1,8 @@
 import java.io.*;
 import java.sql.*;
-
-import javax.naming.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.sql.*;
+import jdbc.TestInstallazione;
 
 /**
  * Servlet implementation class TestServlet
@@ -15,18 +13,34 @@ public class Login extends HttpServlet {
 	Connection conn;
 	
 	public void init() {
+		
 		try {
-			// creo la connessione al dbms
-			// NB: va aggiunta una risorsa nel file context.xml di tomcat per il dbms utilizzato
-			InitialContext cx = new InitialContext();
-			DataSource ds = (DataSource) cx.lookup( "java:comp/env/jdbc/oraclexe" );
-			conn = ds.getConnection();
-			
-		} catch (NamingException e) {
-			System.err.println("C'è qualche errore nel creare il context");
-		} catch (SQLException e) {
-			System.err.println("Non riesco a connettermi! segui la guida per la configurazione!");
+			Class.forName( TestInstallazione.oracledriver );
+		} catch (ClassNotFoundException e) {
+			System.err.println("Driver error");
+			e.printStackTrace();
 		}
+		
+		try {
+			conn = DriverManager.getConnection( TestInstallazione.oracleurl, "sal", "asd" );
+		} catch (SQLException e) {
+			System.err.println("Connection error");
+			e.printStackTrace();
+		}
+		
+		/* Metodo alternativo */
+//		try {
+//			// creo la connessione al dbms
+//			// NB: va aggiunta una risorsa nel file context.xml di tomcat per il dbms utilizzato
+//			InitialContext cx = new InitialContext();
+//			DataSource ds = (DataSource) cx.lookup( "java:comp/env/jdbc/oraclexe" );
+//			conn = ds.getConnection();
+//			
+//		} catch (NamingException e) {
+//			System.err.println("C'è qualche errore nel creare il context");
+//		} catch (SQLException e) {
+//			System.err.println("Non riesco a connettermi! segui la guida per la configurazione!");
+//		}
 	}
 	
 	public void destroy() {

@@ -5,9 +5,10 @@
 <%@page import="javax.naming.InitialContext"%>
 <%@page import="javax.sql.DataSource"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%><html>
+<%@page import="java.sql.Statement"%>
+<%@page import="jdbc.TestInstallazione"%>
+<%@page import="java.sql.DriverManager"%><html>
 <%! 
-InitialContext cx;
 Connection conn; %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,8 +17,8 @@ Connection conn; %>
 <body>
 <table>
 <% 
-cx = new InitialContext();
-conn = ((DataSource) cx.lookup("java:comp/env/jdbc/oraclexe")).getConnection();
+Class.forName( TestInstallazione.oracledriver );
+conn = DriverManager.getConnection( TestInstallazione.oracleurl, "sal", "asd" );
 
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery("SELECT * FROM account");
