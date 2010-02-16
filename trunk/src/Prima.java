@@ -10,10 +10,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 /**
  * Servlet implementation class Prima
@@ -27,7 +29,25 @@ public class Prima extends HttpServlet {
     public Prima() {
         // TODO Auto-generated constructor stub
     }
+    
+    Connection con;
 
+    public void init () {
+    	
+    	try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Errore caricamento driver");
+			e.printStackTrace();
+		}
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		try {
+			con = DriverManager.getConnection(url,"basididati","basididati");
+		} catch (SQLException e) {
+			System.out.println("Impossibile accedere al Database");
+			e.printStackTrace();
+		}
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -42,20 +62,6 @@ public class Prima extends HttpServlet {
 		out.println("<body bgcolor=\"white\">");
 		out.println("<center> <h1>Intestazione di prova</h1>");
 		
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Errore caricamento driver");
-			e.printStackTrace();
-		}
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		Connection con = null;
-		try {
-			con = DriverManager.getConnection(url,"basididati","basididati");
-		} catch (SQLException e) {
-			System.out.println("Impossibile accedere al Database");
-			e.printStackTrace();
-		}
 		Statement st = null;
 		try {
 			st = con.createStatement();
