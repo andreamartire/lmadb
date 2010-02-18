@@ -6,7 +6,6 @@
 <%@page import="javax.sql.DataSource"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="jdbc.TestInstallazione"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="jdbc.JDBC"%><html>
 <%! 
@@ -19,15 +18,43 @@ Connection conn; %>
 <table>
 <% 
 Class.forName( JDBC.oracleDriver );
-conn = DriverManager.getConnection( JDBC.oracleUrl, "sal", "asd" );
+%>
+<form action="http://localhost:14998/lmadb/JspTest.jsp" method="post" name="form" onsubmit="return check(this)">
+	Username: <input type="text" name="username"></input><br></br>
+	Password: <input type="password" name="password"></input><p></p>
+	<input type="submit" name="submit" value="LogIn"></input>
+</form>
+<script type="text/javascript">
+function check( form ) {
+	if( form.username.value == "" || form.password.value == "" ) {
+		window.alert("Insert username and password!");
+		return false;
+	}
+	return true;
+}
+</script>
 
-Statement st = conn.createStatement();
-ResultSet rs = st.executeQuery("SELECT * FROM account");
-while( rs.next() ) { %>
-	<tr>
-	<% for( int i = 1; i <= 2; i++ ) { %>
-		<td>
-		<% out.println( rs.getString(i) );
+<%
+conn = null;
+String usr = request.getParameter("username");
+String psw = request.getParameter("password");
+try {
+	conn = DriverManager.getConnection( JDBC.oracleUrl, usr, psw );
+} catch (Exception e) {
+	%>
+	<font color="red" size="2">Invalid username or password, try again.</font>
+<%}
+
+if( conn != null ) {
+	Statement st = conn.createStatement();
+	out.println( "Hi " + usr + "!" );
+	ResultSet rs = st.executeQuery("SELECT * FROM account");
+	while( rs.next() ) { %>
+		<tr>
+		<% for( int i = 1; i <= 3; i++ ) { %>
+			<td>
+			<% out.println( rs.getString(i) );
+		}
 	}
 }%>
 </table>

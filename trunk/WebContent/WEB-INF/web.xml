@@ -29,4 +29,14 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InserimentoPersonale</display-name>
+    <servlet-name>InserimentoPersonale</servlet-name>
+    <servlet-class>InserimentoPersonale</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InserimentoPersonale</servlet-name>
+    <url-pattern>/InserimentoPersonale</url-pattern>
+  </servlet-mapping>
 </web-app>

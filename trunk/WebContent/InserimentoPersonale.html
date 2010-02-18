@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8181/lmadb/InserimentoPersonale" method="get"
+	onsubmit="return check(this)">
+	<table><tr>
+	<td>Nome: <td><input type="text" name="nome"><tr>
+	<td>Cognome: <td><input type="text" name="cogn"><tr>
+	<td>Matricola: <td><input type="text" name="matr"><tr>
+	<td>Codice Fiscale: <td><input type="text" name="cf"><tr>
+	<td><input type="submit" value="Insert">
+	</table>
+</form>
+<script type="text/javascript">
+function check( form ) {
+	if( form.matr.value == "" ) {
+		window.alert("Inserisci la matricola");
+		return false;
+	}
+	return true;
+}
+</script>
+</body>
+</html>
