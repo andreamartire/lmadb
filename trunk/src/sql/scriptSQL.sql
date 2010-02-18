@@ -16,7 +16,8 @@ CREATE TABLE Account (
 				personale VARCHAR(10),
 
 				PRIMARY KEY (username),
-				FOREIGN KEY (personale) REFERENCES Personale(matricola)
+				CONSTRAINT fk_matricola
+					FOREIGN KEY (personale) REFERENCES Personale(matricola)
 );
 
 CREATE TABLE  Fornitore ( 
@@ -43,7 +44,8 @@ CREATE TABLE SottoCategoriaBene (
 				categoria_bene VARCHAR(20),
 						
 				PRIMARY KEY ( codice ),
-				FOREIGN KEY ( categoria_bene ) REFERENCES CategoriaBene ( sigla )
+				CONSTRAINT fk_categoria_bene
+					FOREIGN KEY ( categoria_bene ) REFERENCES CategoriaBene ( sigla )
 );
 
 CREATE TABLE Bene (
@@ -60,8 +62,10 @@ CREATE TABLE Bene (
 				fornitore VARCHAR(11),
 
 				PRIMARY KEY (numero_inventario_generico),
-				FOREIGN KEY (sotto_categoria_bene) REFERENCES SottoCategoriaBene(codice),
-				FOREIGN KEY (fornitore) REFERENCES Fornitore (partita_iva)
+				CONSTRAINT fk_sotto_categoria_bene
+					FOREIGN KEY (sotto_categoria_bene) REFERENCES SottoCategoriaBene(codice),
+				CONSTRAINT fk_fornitore
+					FOREIGN KEY (fornitore) REFERENCES Fornitore (partita_iva)
 );
 
 CREATE TABLE Bando(
@@ -80,8 +84,10 @@ CREATE TABLE Finanziamento(
 				numero_progressivo INTEGER,
 
 				PRIMARY KEY (bando, numero_progressivo),
-				FOREIGN KEY (bando) REFERENCES Bando(codice),
-				FOREIGN KEY (bene) REFERENCES Bene ( numero_inventario_generico )
+				CONSTRAINT fk_bando
+					FOREIGN KEY (bando) REFERENCES Bando(codice),
+				CONSTRAINT fk_bene
+					FOREIGN KEY (bene) REFERENCES Bene ( numero_inventario_generico )
 );
 
 CREATE TABLE Dotazione ( 
@@ -93,8 +99,10 @@ CREATE TABLE Dotazione (
 				note VARCHAR(199),
 				
 				PRIMARY KEY ( codice ),
-				FOREIGN KEY ( dipendente ) REFERENCES Personale ( matricola ),
-				FOREIGN KEY ( bene ) REFERENCES Bene ( numero_inventario_generico ) 
+				CONSTRAINT fk_dipendente
+					FOREIGN KEY ( dipendente ) REFERENCES Personale ( matricola ),
+				CONSTRAINT fk_bene_dotazione
+					FOREIGN KEY ( bene ) REFERENCES Bene ( numero_inventario_generico ) 
 );
 
 CREATE TABLE GruppoDiLavoro (
@@ -113,8 +121,10 @@ CREATE TABLE Assegnazione(
 			  	note VARCHAR(50),
 			  	
 			  	PRIMARY KEY ( codice ),
-			  	FOREIGN KEY ( gruppo_di_lavoro ) REFERENCES GruppoDiLavoro ( codice ),
-			  	FOREIGN KEY ( bene ) REFERENCES Bene ( numero_inventario_generico )
+			  	CONSTRAINT fk_gruppo_di_lavoro
+					FOREIGN KEY ( gruppo_di_lavoro ) REFERENCES GruppoDiLavoro ( codice ),
+			  	CONSTRAINT fk_bene_assegnazione
+					FOREIGN KEY ( bene ) REFERENCES Bene ( numero_inventario_generico )
 );
 
 CREATE TABLE Richiesta(
@@ -126,8 +136,10 @@ CREATE TABLE Richiesta(
 		       	esito CHAR(1),
 		       	
 		       	PRIMARY KEY ( codice ),
-		       	FOREIGN KEY ( matricola ) REFERENCES Personale(matricola),
-		       	FOREIGN KEY ( sottocategoria_bene ) REFERENCES SottoCategoriaBene( codice )
+		       	CONSTRAINT fk_matricola_rich
+					FOREIGN KEY ( matricola ) REFERENCES Personale(matricola),
+		       	CONSTRAINT fk_sotto_cat_bene_rich
+					FOREIGN KEY ( sottocategoria_bene ) REFERENCES SottoCategoriaBene( codice )
 );
 
 CREATE TABLE Allocazione(
@@ -138,8 +150,10 @@ CREATE TABLE Allocazione(
 			 	data_fine DATE,
 			 	
 			 	PRIMARY KEY(codice),
-			 	FOREIGN KEY(matricola) REFERENCES Personale(matricola),
-			 	FOREIGN KEY(gruppo_di_lavoro) REFERENCES GruppoDiLavoro( codice )
+			 	CONSTRAINT fk_matr_all
+					FOREIGN KEY(matricola) REFERENCES Personale(matricola),
+			 	CONSTRAINT fk_grup_di_lav_all
+					FOREIGN KEY(gruppo_di_lavoro) REFERENCES GruppoDiLavoro( codice )
 );
 
 CREATE TABLE Stanza(
@@ -159,8 +173,10 @@ CREATE TABLE Ubicazione(
 				data_fine DATE,
 			
 				PRIMARY KEY (codice),
-				FOREIGN KEY(bene) REFERENCES Bene( numero_inventario_generico ),
-				FOREIGN KEY(stanza) REFERENCES Stanza( codice )
+				CONSTRAINT fk_bene_ubicazione
+					FOREIGN KEY(bene) REFERENCES Bene( numero_inventario_generico ),
+				CONSTRAINT fk_stanza
+					FOREIGN KEY(stanza) REFERENCES Stanza( codice )
 );
 
 CREATE TABLE Postazione(
@@ -171,17 +187,8 @@ CREATE TABLE Postazione(
 				data_fine DATE,
 			
 				PRIMARY KEY(codice),
-				FOREIGN KEY(matricola) REFERENCES Personale(matricola),
-				FOREIGN KEY(stanza) REFERENCES Stanza( codice )
-);	
-
-
-
-
-
-
-
-
-
-
-
+				CONSTRAINT fk_matricola_postazione
+					FOREIGN KEY(matricola) REFERENCES Personale(matricola),
+				CONSTRAINT fk_stanza_postazione
+					FOREIGN KEY(stanza) REFERENCES Stanza( codice )
+);
