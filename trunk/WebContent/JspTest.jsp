@@ -9,16 +9,22 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="jdbc.JDBC"%><html>
 <%! 
-Connection conn; %>
+Connection conn;
+
+public void init() {
+	try {
+		Class.forName( JDBC.oracleDriver );
+		conn = DriverManager.getConnection( JDBC.oracleUrl, "basididati", "basididati" );
+		
+	} catch (Exception e) {
+	}
+}
+%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Test jsp</title>
 </head>
 <body>
-<table>
-<% 
-Class.forName( JDBC.oracleDriver );
-%>
 <form action="http://localhost:14998/lmadb/JspTest.jsp" method="post" name="form" onsubmit="return check(this)">
 	Username: <input type="text" name="username"></input><br></br>
 	Password: <input type="password" name="password"></input><p></p>
@@ -35,28 +41,30 @@ function check( form ) {
 </script>
 
 <%
-conn = null;
 String usr = request.getParameter("username");
 String psw = request.getParameter("password");
-try {
-	conn = DriverManager.getConnection( JDBC.oracleUrl, usr, psw );
-} catch (Exception e) {
-	%>
-	<font color="red" size="2">Invalid username or password, try again.</font>
-<%}
 
 if( conn != null ) {
-	Statement st = conn.createStatement();
-	out.println( "Hi " + usr + "!" );
-	ResultSet rs = st.executeQuery("SELECT * FROM account");
-	while( rs.next() ) { %>
-		<tr>
-		<% for( int i = 1; i <= 3; i++ ) { %>
-			<td>
-			<% out.println( rs.getString(i) );
+	if( usr != null && psw != null ) {
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM account");
+		boolean found = false;
+		while( rs.next() ) {
+			if( rs.getString(1).equals(usr) &&
+				rs.getString(2).equals(psw) ) {
+				found = true;
+			}
 		}
+		if( found == true ) {
+			%> <font size="2" color="RED">Hi <% out.println(usr); %> !</font> <%
+		} else {
+			%> <font size="2" color="RED"><% out.println(usr); %> is not a registered account!</font> <%
+		}
+	} else {
+		%> <font size="2" color="BLUE">Insert username and password</font> <%
 	}
+} else {
+	out.println("Connection ERROR");
 }%>
-</table>
 </body>
 </html>
