@@ -158,6 +158,9 @@ Stoppare il server tomcat se avviato
 
 Eseguire la servlet: Click destro -> Run as -> Run on Server<br>
 Se tutto è andato bene apparirà una pagina nel web browser con il test Test Servlet ok.
+
+
+
 <p><p>
 
 _Solo per il progetto lmadb:_<p>
