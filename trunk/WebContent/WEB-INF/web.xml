@@ -39,4 +39,14 @@
     <servlet-name>InserimentoPersonale</servlet-name>
     <url-pattern>/InserimentoPersonale</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StringReverse</display-name>
+    <servlet-name>StringReverse</servlet-name>
+    <servlet-class>StringReverse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StringReverse</servlet-name>
+    <url-pattern>/StringReverse</url-pattern>
+  </servlet-mapping>
 </web-app>

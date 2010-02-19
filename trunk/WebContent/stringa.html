@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<font size="4" color="BLUE">Enter a string to view its reverse</font><br></br>
+<form name="form" action="http://localhost:8080/lmadb/StringReverse" onsubmit="return check()">
+	Stringa: <input type="text" name="stringa"><br></br>
+	<input type="submit" value="Reverse">
+</form>
+
+<script type="text/javascript">
+function check() {
+	if( document.form.stringa.value == "" ) {
+		window.alert("Enter a string to try");
+		return false;
+	}
+	return true;
+}
+</script>
+
+</body>
+</html>

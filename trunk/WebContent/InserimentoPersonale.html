@@ -8,13 +8,14 @@
 <form action="http://localhost:8181/lmadb/InserimentoPersonale" method="get"
 	onsubmit="return check(this)">
 	<table><tr>
-	<td>Nome: <td><input type="text" name="nome"><tr>
-	<td>Cognome: <td><input type="text" name="cogn"><tr>
-	<td>Matricola: <td><input type="text" name="matr"><tr>
-	<td>Codice Fiscale: <td><input type="text" name="cf"><tr>
+	<td>Nome:</td> 				<td><input type="text" name="nome"></td><tr>
+	<td>Cognome:</td> 			<td><input type="text" name="cogn"></td><tr>
+	<td>Matricola:</td> 		<td><input type="text" name="matr"></td><tr>
+	<td>Codice Fiscale:</td> 	<td><input type="text" name="cf"></td><tr>
 	<td><input type="submit" value="Insert">
 	</table>
 </form>
+
 <script type="text/javascript">
 function check( form ) {
 	if( form.matr.value == "" ) {
@@ -24,5 +25,6 @@ function check( form ) {
 	return true;
 }
 </script>
+
 </body>
 </html>
