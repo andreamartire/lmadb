@@ -118,11 +118,52 @@ url="jdbc:postgresql://localhost/sal" username="postgres"/>
   * New -> Other -> Server -> Server
   * Server's Host Name: localhost
   * Select the server type -> Apache -> tomcat v6.0 Server
+  * next
+  * tomcat installation directory: /usr/local/tomcat
   * finish
   
-2. *Importare il progetto*
+2. *Creare un progetto*
+  * New -> Dynamic Web Project
+  * Project name: your project name
+  * Target Runtime: Apache Tomcat v6.0
+  * finish
+
+3. *Creare servlet e jsp*
+  * click destro sul progetto appena creato
+  * New -> Servlet
+  * Class name: TestServlet
+  * Finish
+
+Si aprirà nell'editor la servlet appena creata, con già scritte le intestazioni dei metodi doGet e doPost; <br>
+Copiare nel metodo doGet:
+{{{
+PrintWriter out = response.getWriter();
+
+out.println( 
+		"<html>" +
+		"<head>" +
+		"<title>Test Servlet</title>" +
+		"</head>" +
+		"<body>" +
+		"<center><font size=5>Test Servlet ok!</font><center>" +
+		"</body>" +
+		"</html>" 
+);
+}}}
+
+Stoppare il server tomcat se avviato
+  * Windows: click destro sull'icona di tomcat nella barra delle applicazione, e selezionare Stop Service; 
+    Per evitare che si avvii automaticamente: click destro -> Configure -> Startup type: Manual -> Stop -> Ok
+  * GNU/Linux: eseguire lo script shutdown.sh
+
+Eseguire la servlet: Click destro -> Run as -> Run on Server<br>
+Se tutto è andato bene apparirà una pagina nel web browser con il test Test Servlet ok.
+
+
+_Solo per il progetto lmadb:_
+1. *Importare il progetto lmadb*
   * installare Subclipse:
-    In eclipse andate su "help" -> "install new software". Cliccate su Add e mettete come nome Subclipse e come location: http://			  subclipse.tigris.org/update_1.6.x <br>
+    In eclipse andate su "help" -> "install new software". Cliccate su Add e mettete come nome Subclipse e come location: http://subclipse.tigris.org/update_1.6.x <br>
     si caricherà il repository, quindi spuntate la casella Subclipse e installate (riavviate eclipse alla fine). 
 
   * New -> SVN -> Checkout Project from SVN
@@ -130,12 +171,12 @@ url="jdbc:postgresql://localhost/sal" username="postgres"/>
   * https://lmadb.googlecode.com/svn/trunk 
   * vi chiederà di inserire il vostro username e la vostra password googlecode (la pass si trova in "Profile" -> "Settings" da http://code.google.com)
   
-3. *Stoppare il server tomcat se avviato* 
+2. *Stoppare il server tomcat se avviato* 
   * Windows: click destro sull'icona di tomcat nella barra delle applicazione, e selezionare Stop Service; 
     Per evitare che si avvii automaticamente: click destro -> Configure -> Startup type: Manual -> Stop -> Ok
   * GNU/Linux: eseguire lo script shutdown.sh
 
-4. *Avviare Oracle*. Aprire la servlet Login.java nel default package del progetto ed eseguirla: 
+3. *Avviare Oracle*. Aprire la servlet Login.java nel default package del progetto ed eseguirla: 
 	click destro sulla classe -> Run As -> Run on Server.
 	Nella finestra che appare spuntare "Always use this server when running this project" -> finish<br>
 	Inserire una username e una password nel form che dovrebbe apparire e vedere
