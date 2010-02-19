@@ -158,9 +158,9 @@ Stoppare il server tomcat se avviato
 
 Eseguire la servlet: Click destro -> Run as -> Run on Server<br>
 Se tutto è andato bene apparirà una pagina nel web browser con il test Test Servlet ok.
+<p><p>
 
-
-_Solo per il progetto lmadb:_
+_Solo per il progetto lmadb:_<p>
 1. *Importare il progetto lmadb*
   * installare Subclipse:
     In eclipse andate su "help" -> "install new software". Cliccate su Add e mettete come nome Subclipse e come location: http://subclipse.tigris.org/update_1.6.x <br>
