@@ -84,6 +84,15 @@ Da browser inserire http://127.0.0.1:8181/test.html, il risultato dovrebbe esser
 una pagina dal titolo "Test Tomcat" e contenente "Prova andata a buon fine"
 
 === Configurazione di tomcat ===
+		Per creare un utente manager di tomcat, aprire il file tomcat-users.xml nella cartella conf/ di tomcat e inserire all'interno dei tag <tomcat-users> .. </tomcat-users>:
+{{{
+<role rolename="manager"/>
+<user username="USERNAME" password="PASSWORD" roles="manager"/>
+}}}
+		Per testare la buona riuscita dell'operazione, riavviare tomcat, andare su http://127.0.0.1:8181/manager/html e inserire nome utente e password scritti nel file.<br>
+		Dovrebbe caricarsi la pagina del manager di tomcat.
+
+		Per far si che le servlet e le jsp create possono connettersi al database, bisogna importare in tomcat i driver JDBC del DBMS in uso:
 		Copiare i driver JDBC del DBMS nella cartella lib di tomcat <br>
   		(Windows > C:\Programmi\Apache Software Foundation\Tomcat 6.0\lib <br>   		GNU/Linux > /usr/local/tomcat/lib ). <br>
   		Per Oracle copiare il jar <a href="http://download.oracle.com/otn/utilities_drivers/jdbc/10204/ojdbc14.jar">ojdbc14.jar</a><br>
