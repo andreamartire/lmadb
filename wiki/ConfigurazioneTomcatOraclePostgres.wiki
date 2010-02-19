@@ -89,6 +89,7 @@ una pagina dal titolo "Test Tomcat" e contenente "Prova andata a buon fine"
   		Per Oracle copiare il jar <a href="http://download.oracle.com/otn/utilities_drivers/jdbc/10204/ojdbc14.jar">ojdbc14.jar</a><br>
   		Per postgreSQL copiare il jar <a href="http://jdbc.postgresql.org/download/postgresql-8.4-701.jdbc4.jar">postgresql-8.4-701.jdbc4.jar</a>
 		
+		_Opzionale, per la connessione via context_
 		Aprire il file context.xml nella cartella conf di tomcat con un editor di testo e sostituire la
 		parte interna al tag <context> </context> con la seguente:<br>
 {{{
