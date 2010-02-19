@@ -35,12 +35,13 @@ public class StringReverse extends HttpServlet {
 					"<title>String Revert</title>" +
 					"</head>" +
 					"<body>" +
-					"<font size=4>Entered string: \"" + string + "\" - reverse: \"" + reverse + "\"</font>" +
+					"<font size=4>Entered string: \"" + string + "\" - reverse: \"" + reverse + "\"</font><p>" +
+					"<a href=\"http://localhost:8181/lmadb/stringa.html\"><button>Try again</button></a>" +
 					"</body>" +
 					"</html>"
 			);
 		} catch (Exception e) {
-			response.sendRedirect( "http://localhost:8080/stringa.html" );
+			response.sendRedirect( "http://localhost:8181/lmadb/stringa.html" );
 		}
 	}
 
