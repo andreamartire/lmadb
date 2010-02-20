@@ -49,4 +49,14 @@
     <servlet-name>StringReverse</servlet-name>
     <url-pattern>/StringReverse</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <description></description>
+    <display-name>Calcolatrice</display-name>
+    <servlet-name>Calcolatrice</servlet-name>
+    <servlet-class>Calcolatrice</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Calcolatrice</servlet-name>
+    <url-pattern>/Calcolatrice</url-pattern>
+  </servlet-mapping>
 </web-app>
