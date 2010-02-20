@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="calcola" action=http://localhost:8181/lmadb/Calcolatrice onsubmit="return controlla()">
+		Scegli due numeri:
+		<input type="text" name=numero1></input> - <input type="text" name=numero2></input><br>
+		Scegli tipo di operazione: 
+		<input type="radio" name=operazione value="+">+</input>
+		<input type="radio" name=operazione value="-">-</input>
+		<input type="radio" name=operazione value="*">*</input>
+		<input type="radio" name=operazione value="/">/</input>
+		<center><input type="submit" name=invia value=Invia ></input></center>
+	</form>
+	
+	<!-- I controlli lato client non funzionano -->
+	
+	<script type="text/javascript">
+		function controlla() {
+			if( ( isNaN( document.calcola.numero1.value ) ) {
+				window.alert("Devi inserire un numero");
+				return false;
+			}
+			else if( isNaN( document.calcola.numero2.value ) {
+				window.alert("Devi inserire un numero");
+				return false;
+			}
+			return true;
+		}
+	</script>
+	
+</body>
+</html>
