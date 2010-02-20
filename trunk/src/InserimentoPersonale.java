@@ -47,7 +47,7 @@ public class InserimentoPersonale extends HttpServlet {
 			matricola = Integer.valueOf( request.getParameter("matr") );
 			cf = request.getParameter("cf");
 		} catch (Exception e) {
-			response.sendRedirect( "http://localhost:14998/lmadb/InserimentoPersonale.html" );
+			response.sendRedirect( "http://localhost:8181/lmadb/InserimentoPersonale.html" );
 			return;
 		}
 		
@@ -87,7 +87,7 @@ public class InserimentoPersonale extends HttpServlet {
 			}
 			
 			out.println("</table><p>" +
-					"<a href=\"http://localhost:14998/lmadb/InserimentoPersonale.html\">" +
+					"<a href=\"http://localhost:8181/lmadb/InserimentoPersonale.html\">" +
 					"<button>Create Other</button></a>");
 			
 			

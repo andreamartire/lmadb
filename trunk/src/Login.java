@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
 		}
 		
 		try {
-			connection = DriverManager.getConnection( JDBC.oracleUrl, "sal", "asd" );
+			connection = DriverManager.getConnection( JDBC.oracleUrl, "basididati", "basididati" );
 		} catch (SQLException e) {
 			System.err.println("Connection error");
 			e.printStackTrace();
