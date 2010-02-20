@@ -5,6 +5,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	
+	
 	<form name="calcola" action=http://localhost:8181/lmadb/Calcolatrice onsubmit="return controlla()">
 		Scegli due numeri:
 		<input type="text" name=numero1></input> - <input type="text" name=numero2></input><br>
@@ -19,17 +22,19 @@
 	<!-- I controlli lato client non funzionano -->
 	
 	<script type="text/javascript">
+
 		function controlla() {
-			if( ( isNaN( document.calcola.numero1.value ) ) {
+			if(  isNaN( document.calcola.numero1.value ) == true ) {
 				window.alert("Devi inserire un numero");
 				return false;
 			}
-			else if( isNaN( document.calcola.numero2.value ) {
+			else if( isNaN( document.calcola.numero2.value ) == true ) {
 				window.alert("Devi inserire un numero");
 				return false;
 			}
 			return true;
 		}
+
 	</script>
 	
 </body>
