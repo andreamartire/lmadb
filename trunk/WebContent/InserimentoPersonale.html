@@ -2,29 +2,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<form action="http://localhost:8181/lmadb/InserimentoPersonale" method="get"
-	onsubmit="return check(this)">
-	<table><tr>
-	<td>Nome:</td> 				<td><input type="text" name="nome"></td><tr>
-	<td>Cognome:</td> 			<td><input type="text" name="cogn"></td><tr>
-	<td>Matricola:</td> 		<td><input type="text" name="matr"></td><tr>
-	<td>Codice Fiscale:</td> 	<td><input type="text" name="cf"></td><tr>
-	<td><input type="submit" value="Insert">
-	</table>
-</form>
+<title>Inserimento Personale</title>
 
 <script type="text/javascript">
 function check( form ) {
-	if( form.matr.value == "" ) {
-		window.alert("Inserisci la matricola");
+	var matr = form.matr.value;
+	var cf = form.cf.value;
+	// controllo se la matricola è corretta NB: deve contenere almeno un numero, e solo numeri
+	if( !matr.match( /^\d+$/ ) ) {
+		alert("Matricola non valida");
+		return false;
+	}
+	// controllo del codice fiscale
+	var cfRegExp = /^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$/i;
+	if( !cf.match( cfRegExp ) ) {
+		alert("Codice fiscale non valido");
 		return false;
 	}
 	return true;
 }
 </script>
+
+</head>
+<body>
+
+<form action="http://localhost:8181/lmadb/InserimentoPersonale" method="get"
+	onsubmit="return check(this)">
+	<table>
+	<tr><td>Nome:</td> 				<td><input type="text" name="nome"></td></tr>
+	<tr><td>Cognome:</td> 			<td><input type="text" name="cogn"></td></tr>
+	<tr><td>Matricola:</td> 		<td><input type="text" name="matr"></td></tr>
+	<tr><td>Codice Fiscale:</td> 	<td><input type="text" name="cf"></td></tr>
+	
+	<tr><td><input type="submit" value="Registra"></td></tr>
+	</table>
+</form>
 
 </body>
 </html>
