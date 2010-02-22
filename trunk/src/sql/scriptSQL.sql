@@ -8,14 +8,16 @@ CREATE TABLE Personale (
 );
 
 CREATE OR REPLACE TRIGGER updatepersonale
-	AFTER UPDATE ON PERSONALE
+        AFTER UPDATE ON PERSONALE
 FOR EACH ROW
-	WHEN (old.matricola != new.matricola) 
+        WHEN (old.matricola != new.matricola) 
 DECLARE 
-	newmatr VARCHAR(10);
-	oldmatr VARCHAR(10);
+        newmatr VARCHAR(10);
+        oldmatr VARCHAR(10);
 BEGIN
-	UPDATE account SET personale = newmatr WHERE personale = oldmatr;
+        newmatr := :new.matricola;
+        oldmatr := :old.matricola;
+        UPDATE account SET personale = newmatr WHERE personale = oldmatr;
 END;
 
 CREATE TABLE Account ( 
