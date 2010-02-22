@@ -7,6 +7,17 @@ CREATE TABLE Personale (
 	PRIMARY KEY (matricola)
 );
 
+CREATE OR REPLACE TRIGGER updatepersonale
+	AFTER UPDATE ON PERSONALE
+FOR EACH ROW
+	WHEN (old.matricola != new.matricola) 
+DECLARE 
+	newmatr VARCHAR(10);
+	oldmatr VARCHAR(10);
+BEGIN
+	UPDATE account SET personale = newmatr WHERE personale = oldmatr;
+END;
+
 CREATE TABLE Account ( 
 	username VARCHAR(30) not null,
 	password VARCHAR(32) not null,
