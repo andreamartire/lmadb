@@ -40,6 +40,16 @@
     <url-pattern>/InserimentoPersonale</url-pattern>
   </servlet-mapping>
   <servlet>
+    <description>Umberto</description>
+    <display-name>InvertiUmb</display-name>
+    <servlet-name>InvertiUmb</servlet-name>
+    <servlet-class>InvertiUmb</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InvertiUmb</servlet-name>
+    <url-pattern>/InvertiUmb</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>StringReverse</display-name>
     <servlet-name>StringReverse</servlet-name>
