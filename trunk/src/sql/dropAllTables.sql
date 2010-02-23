@@ -17,6 +17,15 @@ ALTER TABLE SottoCategoriaBene drop CONSTRAINT fk_categoria_bene;
 ALTER TABLE Bene drop CONSTRAINT fk_sotto_categoria_bene;
 ALTER TABLE Bene drop CONSTRAINT fk_fornitore;
 
+DROP TRIGGER triggerPersonale;
+DROP TRIGGER triggerSottoCategoriaBene;
+DROP TRIGGER triggerFornitore;
+DROP TRIGGER triggerBene;
+DROP TRIGGER triggerBando;
+DROP TRIGGER triggerCategoriaBene;
+DROP TRIGGER triggerGruppoDiLavoro;
+DROP TRIGGER triggerStanza;
+
 DROP TABLE Account;
 DROP TABLE Finanziamento;
 DROP TABLE Dotazione;

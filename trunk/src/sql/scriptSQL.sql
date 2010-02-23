@@ -7,19 +7,6 @@ CREATE TABLE Personale (
 	PRIMARY KEY (matricola)
 );
 
-CREATE OR REPLACE TRIGGER updatepersonale
-        AFTER UPDATE ON PERSONALE
-FOR EACH ROW
-        WHEN (old.matricola != new.matricola) 
-DECLARE 
-        newmatr VARCHAR(10);
-        oldmatr VARCHAR(10);
-BEGIN
-        newmatr := :new.matricola;
-        oldmatr := :old.matricola;
-        UPDATE account SET personale = newmatr WHERE personale = oldmatr;
-END;
-
 CREATE TABLE Account ( 
 	username VARCHAR(30) not null,
 	password VARCHAR(32) not null,
@@ -32,6 +19,7 @@ CREATE TABLE Account (
 	PRIMARY KEY (username),
 	CONSTRAINT fk_matricola
 		FOREIGN KEY (personale) REFERENCES Personale(matricola)
+		ON DELETE CASCADE
 );
 
 CREATE TABLE  Fornitore ( 
@@ -45,7 +33,7 @@ CREATE TABLE  Fornitore (
 			
 	PRIMARY KEY ( partita_iva )
 );
-	
+
 CREATE TABLE CategoriaBene ( 
 	sigla VARCHAR(20) not null, 
 		CHECK (sigla IN ('MA', 'MB', 'SA')),
@@ -53,7 +41,7 @@ CREATE TABLE CategoriaBene (
 	
 	PRIMARY KEY ( sigla )
 );
-	
+
 CREATE TABLE SottoCategoriaBene ( 
 	codice VARCHAR(10) not null, 
 	nome VARCHAR(20), 
@@ -62,15 +50,13 @@ CREATE TABLE SottoCategoriaBene (
 	PRIMARY KEY ( codice ),
 	CONSTRAINT fk_categoria_bene
 		FOREIGN KEY ( categoria_bene ) REFERENCES CategoriaBene ( sigla )
+		ON DELETE CASCADE
 );
-
-CREATE SEQUENCE seq_beni 
-	START WITH 1;
 
 CREATE TABLE Bene (
 	numero_inventario_generico INTEGER NOT NULL,
 	numero_inventario_seriale INTEGER,
-	importo FLOAT,
+	importo INTEGER,
 	data_acquisto DATE,
 	garanzia VARCHAR(50),
 	data_attivazione DATE,
@@ -84,9 +70,11 @@ CREATE TABLE Bene (
 
 	PRIMARY KEY (numero_inventario_generico),
 	CONSTRAINT fk_sotto_categoria_bene
-		FOREIGN KEY (sotto_categoria_bene) REFERENCES SottoCategoriaBene(codice),
+		FOREIGN KEY (sotto_categoria_bene) REFERENCES SottoCategoriaBene(codice)
+		ON DELETE SET NULL,
 	CONSTRAINT fk_fornitore
 		FOREIGN KEY (fornitore) REFERENCES Fornitore (partita_iva)
+		ON DELETE SET NULL
 );
 
 CREATE TABLE Bando(
@@ -106,9 +94,11 @@ CREATE TABLE Finanziamento(
 
 	PRIMARY KEY (bando, numero_progressivo),
 	CONSTRAINT fk_bando
-		FOREIGN KEY (bando) REFERENCES Bando(codice),
+		FOREIGN KEY (bando) REFERENCES Bando(codice)
+		ON DELETE CASCADE,
 	CONSTRAINT fk_bene
 		FOREIGN KEY (bene) REFERENCES Bene ( numero_inventario_generico )
+		ON DELETE SET NULL
 );
 
 CREATE TABLE Dotazione ( 
@@ -121,9 +111,11 @@ CREATE TABLE Dotazione (
 
 	PRIMARY KEY ( codice ),
 	CONSTRAINT fk_dipendente
-		FOREIGN KEY ( dipendente ) REFERENCES Personale ( matricola ),
+		FOREIGN KEY ( dipendente ) REFERENCES Personale ( matricola )
+		ON DELETE CASCADE,
 	CONSTRAINT fk_bene_dotazione
 		FOREIGN KEY ( bene ) REFERENCES Bene ( numero_inventario_generico ) 
+		ON DELETE CASCADE
 );
 
 CREATE TABLE GruppoDiLavoro (
@@ -143,15 +135,17 @@ CREATE TABLE Assegnazione (
   	
   	PRIMARY KEY ( codice ),
   	CONSTRAINT fk_gruppo_di_lavoro
-		FOREIGN KEY ( gruppo_di_lavoro ) REFERENCES GruppoDiLavoro ( codice ),
+		FOREIGN KEY ( gruppo_di_lavoro ) REFERENCES GruppoDiLavoro ( codice )
+		ON DELETE CASCADE,
   	CONSTRAINT fk_bene_assegnazione
 		FOREIGN KEY ( bene ) REFERENCES Bene ( numero_inventario_generico )
+		ON DELETE CASCADE
 );
 
 CREATE TABLE Richiesta(
 	codice VARCHAR(10) NOT NULL,
    	matricola VARCHAR(10),
-   	sottocategoria_bene VARCHAR(10),
+   	sotto_categoria_bene VARCHAR(10),
    	data DATE,
    	motivazione VARCHAR(50),
    	esito CHAR(1), 
@@ -159,9 +153,11 @@ CREATE TABLE Richiesta(
 		       	
    	PRIMARY KEY ( codice ),
    	CONSTRAINT fk_matricola_rich
-		FOREIGN KEY ( matricola ) REFERENCES Personale(matricola),
+		FOREIGN KEY ( matricola ) REFERENCES Personale(matricola)
+		ON DELETE CASCADE,
    	CONSTRAINT fk_sotto_cat_bene_rich
-		FOREIGN KEY ( sottocategoria_bene ) REFERENCES SottoCategoriaBene( codice )
+		FOREIGN KEY ( sotto_categoria_bene ) REFERENCES SottoCategoriaBene( codice )
+		ON DELETE CASCADE
 );
 
 CREATE TABLE Allocazione(
@@ -173,9 +169,11 @@ CREATE TABLE Allocazione(
  	
  	PRIMARY KEY(codice),
  	CONSTRAINT fk_matr_all
-		FOREIGN KEY(matricola) REFERENCES Personale(matricola),
+		FOREIGN KEY(matricola) REFERENCES Personale(matricola)
+		ON DELETE CASCADE,
  	CONSTRAINT fk_grup_di_lav_all
 		FOREIGN KEY(gruppo_di_lavoro) REFERENCES GruppoDiLavoro( codice )
+		ON DELETE CASCADE
 );
 
 CREATE TABLE Stanza(
@@ -196,9 +194,11 @@ CREATE TABLE Ubicazione(
 
 	PRIMARY KEY (codice),
 	CONSTRAINT fk_bene_ubicazione
-		FOREIGN KEY(bene) REFERENCES Bene( numero_inventario_generico ),
+		FOREIGN KEY(bene) REFERENCES Bene( numero_inventario_generico )
+		ON DELETE CASCADE,
 	CONSTRAINT fk_stanza
 		FOREIGN KEY(stanza) REFERENCES Stanza( codice )
+		ON DELETE CASCADE
 );
 
 CREATE TABLE Postazione(
@@ -210,7 +210,127 @@ CREATE TABLE Postazione(
 
 	PRIMARY KEY(codice),
 	CONSTRAINT fk_matricola_postazione
-		FOREIGN KEY(matricola) REFERENCES Personale(matricola),
+		FOREIGN KEY(matricola) REFERENCES Personale(matricola)
+		ON DELETE CASCADE,
 	CONSTRAINT fk_stanza_postazione
 		FOREIGN KEY(stanza) REFERENCES Stanza( codice )
+		ON DELETE CASCADE
 );	
+/
+CREATE OR REPLACE TRIGGER triggerPersonale
+    AFTER UPDATE ON PERSONALE
+FOR EACH ROW
+    WHEN (old.matricola != new.matricola) 
+DECLARE 
+    newmatr VARCHAR(10);
+    oldmatr VARCHAR(10);
+BEGIN
+	newmatr := :new.matricola;
+	oldmatr := :old.matricola;
+	UPDATE account SET personale = newmatr WHERE personale = oldmatr;
+	UPDATE allocazione SET matricola = newmatr WHERE matricola = oldmatr;
+	UPDATE postazione SET matricola = newmatr WHERE matricola = oldmatr;
+	UPDATE richiesta SET matricola = newmatr WHERE matricola = oldmatr;
+	UPDATE dotazione SET dipendente = newmatr WHERE dipendente = oldmatr;
+END;
+/
+CREATE OR REPLACE TRIGGER triggerGruppoDiLavoro
+        AFTER UPDATE ON GruppoDiLavoro
+FOR EACH ROW
+        WHEN (old.codice != new.codice) 
+DECLARE 
+        newcodice VARCHAR(10);
+        oldcodice VARCHAR(10);
+BEGIN
+        newcodice := :new.codice;
+        oldcodice := :old.codice;
+       	UPDATE Ubicazione SET stanza = newcodice WHERE stanza = oldcodice;
+       	UPDATE Postazione SET stanza = newcodice WHERE stanza = oldcodice;
+END;
+/
+CREATE OR REPLACE TRIGGER triggerGruppoDiLavoro
+        AFTER UPDATE ON GruppoDiLavoro
+FOR EACH ROW
+        WHEN (old.codice != new.codice) 
+DECLARE 
+        newcodice VARCHAR(10);
+        oldcodice VARCHAR(10);
+BEGIN
+        newcodice := :new.codice;
+        oldcodice := :old.codice;
+       	UPDATE Assegnazione SET gruppo_di_lavoro = newcodice WHERE gruppo_di_lavoro = oldcodice;
+       	UPDATE Allocazione SET gruppo_di_lavoro = newcodice WHERE gruppo_di_lavoro = oldcodice;
+END;
+/
+CREATE OR REPLACE TRIGGER triggeBando
+        AFTER UPDATE ON Bando
+FOR EACH ROW
+        WHEN (old.codice != new.codice) 
+DECLARE 
+        newcodice VARCHAR(10);
+        oldcodice VARCHAR(10);
+BEGIN
+        newcodice := :new.codice;
+        oldcodice := :old.codice;
+       	UPDATE Finanziamento SET bando = newcodice WHERE bando = oldcodice;
+END;
+/
+CREATE OR REPLACE TRIGGER triggerBene
+        AFTER UPDATE ON BENE
+FOR EACH ROW
+        WHEN (old.numero_inventario_generico != new.numero_inventario_generico) 
+DECLARE 
+        newinv VARCHAR(11);
+        oldinv VARCHAR(11);
+BEGIN
+        newinv := :new.numero_inventario_generico;
+        oldinv := :old.numero_inventario_generico;
+        UPDATE finanziamento SET bene = newinv WHERE bene = oldinv;
+        UPDATE assegnazione SET bene = newinv WHERE bene = oldinv;
+        UPDATE ubicazione SET bene = newinv WHERE bene = oldinv;
+        UPDATE dotazione SET bene = newinv WHERE bene = oldinv;
+END;
+/
+CREATE OR REPLACE TRIGGER triggerFornitore
+    AFTER UPDATE ON FORNITORE
+FOR EACH ROW
+    WHEN (old.partita_iva != new.partita_iva) 
+DECLARE 
+    newpiva VARCHAR(11);
+    oldpiva VARCHAR(11);
+BEGIN
+    newpiva := :new.partita_iva;
+    oldpiva := :old.partita_iva;
+    UPDATE bene SET fornitore = newpiva WHERE fornitore = oldpiva;
+END;
+/
+CREATE OR REPLACE TRIGGER triggerCategoriaBene
+    AFTER UPDATE ON CategoriaBene
+FOR EACH ROW
+    WHEN (old.sigla != new.sigla) 
+DECLARE 
+    newsigla VARCHAR(10);
+    oldsigla VARCHAR(10);
+BEGIN
+    newsigla := :new.sigla;
+    oldsigla := :old.sigla;
+   	UPDATE SottoCategoriaBene SET categoria_bene = newsigla WHERE categoria_bene = oldsigla;
+END;
+/
+CREATE OR REPLACE TRIGGER triggerSottoCategoriaBene
+        AFTER UPDATE ON SottoCategoriaBene
+FOR EACH ROW
+        WHEN (old.codice != new.codice) 
+DECLARE 
+        newcodice VARCHAR(10);
+        oldcodice VARCHAR(10);
+BEGIN
+        newcodice := :new.codice;
+        oldcodice := :old.codice;
+       	UPDATE Bene SET sotto_categoria_bene = newcodice WHERE sotto_categoria_bene = oldcodice;
+       	UPDATE Richiesta SET sotto_categoria_bene = newcodice WHERE sotto_categoria_bene = oldcodice;
+END;
+/
+CREATE SEQUENCE seq_beni 
+	START WITH 1;
+/
