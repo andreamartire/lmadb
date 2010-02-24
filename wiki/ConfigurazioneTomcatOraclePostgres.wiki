@@ -17,7 +17,7 @@ _Lo scopo della guida è installare il DBMS Oracle e il web-server tomcat e conf
     Windows -> durante l'installazione viene chiesta la pass e viene visualizzata una finestra con le info necessarie
 
 === Far partire il server oracle ===
-    GNU/Linux -> `sudo /etc/init.d/oracle-xe dsstart` oppure `sh /usr/lib/oracle/xe/app/oracle/product/10.2.0/server/config/scripts/startdb.sh`<br>
+    GNU/Linux -> `sudo /etc/init.d/oracle-xe restart`<br>
     Windows -> viene installato come servizio quindi parte sempre all'avvio..
 
 === Primo avvio ===
