@@ -3,22 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
-</head>
-<body>
-<form action="http://localhost:8181/lmadb/Login" method="post" name="form" onsubmit="return check(this)">
-	Username: <input type="text" name="username"></input><br></br>
-	Password: <input type="password" name="password"></input><p></p>
-	<input type="submit" name="submit" value="LogIn"></input>
-</form>
-<script type="text/javascript">
-function check( form ) {
-	if( form.username.value == "" || form.password.value == "" ) {
-		window.alert("Inserisci uno username e una passowrd");
-		return false;
-	}
-	return true;
-}
-</script>
 
+	<script type="text/javascript">
+	function check( form ) {
+		if( form.username.value == "" || form.password.value == "" ) {
+			window.alert("Inserisci uno username e una passowrd");
+			return false;
+		}
+		return true;
+	}
+	</script>
+
+</head>
+
+<body>
+	<form action="http://localhost:8181/lmadb/Login" method="post" name="form" onsubmit="return check(this)">
+		Username: <input type="text" name="username"></input><br></br>
+		Password: <input type="password" name="password"></input><p></p>
+		<input type="submit" name="submit" value="LogIn"></input>
+	</form>
 </body>
+
 </html>

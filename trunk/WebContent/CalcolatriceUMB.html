@@ -3,27 +3,29 @@
 <title>
 Calcolatrice
 </title>
+
+<script type="text/javascript">
+formula = "";
+function calcola( x ) {
+	if( x != "=" ) {
+		formula = formula + x
+		alert( "la formula e' " + formula );
+	} else {
+		alert( "il risultato e' " );
+	}
+}
+</script>
+
 </head>
 <body>
-	<input type="text" name=numero1> </input> 
-	<input type="text" name=numero2> </input>
-	Seleziono i numeri
-	
-	<input type="radio" name=operazione1 value="+"> </input>
-	<input type="radio" name=operazione2 value="-"> </input>
-	<input type="radio" name=operazione3 value="*"> </input>
-	<input type="radio" name=operazione4 value="/"> </input>
-	Seleziono l'operazione
-	
-	<center> <input onsubmit="return calcola()" name="Calcola" value=invia></input>
-	</center>
-	
-	<script type="text/javascript">
-	function calcola(){
-	}
-	
-	</script>
+
+<table>
+<tr><td><button onclick="javascript:calcola(1)">1</button></td><td><button onclick="javascript:calcola(2)">2</button></td><td><button onclick="javascript:calcola(3)">3</button></td></tr>
+<tr><td><button onclick="javascript:calcola(4)">4</button></td><td><button onclick="javascript:calcola(5)">5</button></td><td><button onclick="javascript:calcola(6)">6</button></td></tr>
+<tr><td><button onclick="javascript:calcola(7)">7</button></td><td><button onclick="javascript:calcola(8)">8</button></td><td><button onclick="javascript:calcola(9)">9</button></td></tr>
+<tr><td><button onclick="javascript:calcola(0)">0</button></td><td><button onclick="javascript:calcola('+')">+</button></td><td><button onclick="javascript:calcola('-')">-</button></td></tr>
+<tr><td><button onclick="javascript:calcola('*')">*</button></td><td><button onclick="javascript:calcola('/')">/</button></td><td><button onclick="javascript:calcola('=')">=</button></td></tr>
+</table>
 
 </body>
-
 </html>

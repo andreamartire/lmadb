@@ -59,7 +59,7 @@
     <servlet-name>StringReverse</servlet-name>
     <url-pattern>/StringReverse</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>Calcolatrice</display-name>
     <servlet-name>Calcolatrice</servlet-name>
@@ -68,5 +68,15 @@
   <servlet-mapping>
     <servlet-name>Calcolatrice</servlet-name>
     <url-pattern>/Calcolatrice</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
 </web-app>

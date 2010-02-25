@@ -92,9 +92,11 @@ public class Login extends HttpServlet {
 			 * NB: a questo livello considero che username non sia univoco anche se lo è e quindi
 			 * sicuramente il resultset avrà una sola riga 
 			 */
+			String type = "";
 			boolean check = false;
 			while( rs.next() ) {
 				if( rs.getString("password").equals( psw ) ) {
+					type = rs.getString("tipologia");
 					check = true;
 				}
 			}
@@ -103,9 +105,24 @@ public class Login extends HttpServlet {
 			 * in base alla sua tipologia
 			 */
 			if( check == true ) {
-				out.println( "<h2>Ciao " + usr + "!</h2><br>" +
-						"<a href=\"http://localhost:8181/lmadb/login.html\"><button>LogOut</button></a>" );
-				// bla bla
+				
+				// creo o ottengo la sessione
+				HttpSession sess = request.getSession(true);
+				
+				// inseriamo nella sessione un parametro che identifica il tipo di account
+				// collegato in modo da evitare accessi a pagine non di propria competenza
+				// fucks
+				sess.setAttribute("type", type);
+				
+				if( type.equals("amministratore") ) {
+					response.sendRedirect("adminhome.jsp");
+				} else if ( type.equals("addetto amministrativo") ) {
+					response.sendRedirect("addettohome.jsp");
+				} else if ( type.equals("dipendente") ) {
+					response.sendRedirect("diphome.jsp");
+				} else {
+					response.sendError(404, "chi cazzo sei?");
+				}
 			} else {
 				/* altrimenti gli dico che la password è sbagliata..anche qui sarebbe carino redirezionarlo
 				 * alla pagina di login e visualizzare il messaggio direttamente li...
