@@ -1,4 +1,4 @@
-import java.io.Serializable;
+import java.io.*;
 import java.util.HashMap;
 
 /**
@@ -8,6 +8,7 @@ public class Sequencer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private HashMap<String, Sequence> sequences;
+	static Sequencer sequencer;
 	
 	public Sequencer() {
 		sequences = new HashMap<String, Sequence>();
@@ -15,21 +16,46 @@ public class Sequencer implements Serializable {
 	
 	/** Funzione <code>next( String seq )</code><br>
 	 * Ritorna il prossimo valore della sequenza specificata; se la sequenza specificata non esiste 
-	 * viene creata e inizializzata.
+	 * viene creata e inizializzata.</br>
+	 * <p>NB: metodo sincronizzato che prevede la lettura e la successiva scrittura del sequencer su
+	 * disco per rendere permanenti le modifiche</p>
 	 * 
-	 * @param seq - <b>String</b> - Il nome della sequenza
+	 * @param sequence - <b>String</b> - Il nome della sequenza
 	 * @return <b>int</b> - il prossimo valore della sequenza specificata
 	 * 
-	 * @throws Exception
+	 * @throws Exception nel caso in cui la sequenza sia finita
 	 */
-	public synchronized int next( String seq ) throws Exception {
-		// se non esiste, la sequenza richiesta viene creata al momento
-		if( sequences.get(seq) == null ) {
+	public static synchronized int nextval( String sequence ) throws Exception {
+		// caricamento sequencer
+		try {
+			FileInputStream inFile = new FileInputStream("sequencer");
+			ObjectInputStream inStream = new ObjectInputStream(inFile); 
+			sequencer = (Sequencer) inStream.readObject();
+		} catch (Exception e) {
+			System.err.println("File non trovato, creazione nuovo sequencer");
+			sequencer = new Sequencer();
+		}	
+		
+		// se non esiste la sequenza richiesta viene creata al momento
+		if( sequencer.sequences.get(sequence) == null ) {
 			System.out.println("creo una nuova sequenza");
-			sequences.put(seq, new Sequence() );
+			sequencer.sequences.put( sequence, new Sequence() );
 		}
-		// incremento il valore della sequenza richiesta e ritorno il valore
-		return sequences.get(seq).nextVal();
+		
+		// incremento del valore della sequenza richiesta
+		int nextVal = sequencer.sequences.get(sequence).nextVal();
+		
+		// salvataggio del sequencer
+		try {
+			FileOutputStream outFile = new FileOutputStream("sequencer");
+			ObjectOutputStream outStream = new ObjectOutputStream(outFile);
+			outStream.writeObject( sequencer );
+			
+		} catch (Exception e) {
+		}
+		
+		// ritorno del valore
+		return nextVal;
 	}
 	
 	protected static class Sequence implements Serializable {
