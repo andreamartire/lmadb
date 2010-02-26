@@ -29,7 +29,7 @@ public ResultSet getDipendenti() throws Exception {
 </head>
 <body>
 Inserisci un nuovo dipendente
-<a href="inserimentopersonale.jsp"><button>Inserisci</button></a>
+<a href="inserimentopersonale.html"><button>Inserisci</button></a>
 
 <table border="1">
 <tr><td>Matricola</td><td>Nome</td><td>Cognome</td></tr>
@@ -38,7 +38,7 @@ ResultSet rs = getDipendenti();
 while( rs.next() ) {
 	%>
 	<tr><td><%=rs.getString("matricola") %></td><td><%=rs.getString("nome") %></td>
-	<td><%=rs.getString("cognome") %></td><td><input type="button" action="" value="Gestisci Dipendente"/></td></tr>
+	<td><%=rs.getString("cognome") %></td><td><input type="button" onclick="gestionedipendente" value="Gestisci Dipendente"></td></tr>
 	<%
 }
 %>

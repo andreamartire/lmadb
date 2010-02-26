@@ -36,18 +36,27 @@ public class InserimentoPersonale extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect("http://localhost:8181/lmadb/inserimentopersonale.html");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletOutputStream out = response.getOutputStream();
 		
-		String nome = "", cognome = "", cf = "";
-		int matricola = -1;
-		
+		String nome, cognome, cf, mail, username, password, tipologia, matricola;
 		try {
 			nome = request.getParameter("nome");
 			cognome = request.getParameter("cogn");
-			matricola = Integer.valueOf( request.getParameter("matr") );
+			matricola = "114654";
 			cf = request.getParameter("cf");
+			mail = request.getParameter("mail");
+			username = request.getParameter("usr");
+			password = request.getParameter("pass");
+			tipologia = request.getParameter("tipo");
 		} catch (Exception e) {
-			response.sendRedirect( "http://localhost:8181/lmadb/InserimentoPersonale.html" );
+			response.sendRedirect( "http://localhost:8181/lmadb/inserimentopersonale.html" );
 			return;
 		}
 		
@@ -60,10 +69,19 @@ public class InserimentoPersonale extends HttpServlet {
 		
 		try {
 			PreparedStatement st = conn.prepareStatement( "INSERT INTO personale VALUES ( ?, ?, ?, ? )" );
-			st.setInt( 1, matricola );
+			st.setString( 1, matricola );
 			st.setString( 2, cf );
 			st.setString( 3, nome );
 			st.setString( 4, cognome );
+			
+			st.executeQuery();
+			
+			st = conn.prepareStatement( "INSERT INTO account VALUES ( ?, ?, ?, current_date, ?, ? )" );
+			st.setString( 1, username );
+			st.setString( 2, password );
+			st.setString( 3, mail );
+			st.setString( 4, tipologia );
+			st.setString( 5, matricola );
 			
 			st.executeQuery();
 			
@@ -87,7 +105,7 @@ public class InserimentoPersonale extends HttpServlet {
 			}
 			
 			out.println("</table><p>" +
-					"<a href=\"http://localhost:8181/lmadb/InserimentoPersonale.html\">" +
+					"<a href=\"http://localhost:8181/lmadb/inserimentopersonale.html\">" +
 					"<button>Create Other</button></a>");
 			
 			
@@ -96,13 +114,6 @@ public class InserimentoPersonale extends HttpServlet {
 		}
 		
 		out.println("</body></html>");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }
