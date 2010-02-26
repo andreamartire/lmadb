@@ -18,7 +18,13 @@ if( sess == null ) {
 
 try {
 	if( sess.getAttribute("type").equals("amministratore") ) {
-		%> <h2>Ciao amministratore</h2><br>
+		%> <font size="3">Ciao <%=sess.getAttribute("name")%></font><p>
+			<a href="http://localhost:8181/lmadb/gestioneaccount.jsp">Gestione Account</a><br></br>
+			<a href="http://localhost:8181/lmadb/gestionedipendenti.jsp">Gestione Dipendenti</a><br></br>
+			<a href="http://localhost:8181/lmadb/gestionegruppo.jsp">Gestione Gruppi di Lavoro</a><br></br>
+			<a href="http://localhost:8181/lmadb/gestionebeni.jsp">Gestione Beni</a><br></br>
+			<a href="http://localhost:8181/lmadb/gestionerichieste.jsp">Gestione Richieste</a></p>
+			
  			<a href="http://localhost:8181/lmadb/Logout"><button>LogOut</button></a> 		
 		<% 
 	} else {

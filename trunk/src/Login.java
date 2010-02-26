@@ -113,6 +113,7 @@ public class Login extends HttpServlet {
 				// collegato in modo da evitare accessi a pagine non di propria competenza
 				// fucks
 				sess.setAttribute("type", type);
+				sess.setAttribute("name", usr);
 				
 				if( type.equals("amministratore") ) {
 					response.sendRedirect("adminhome.jsp");
