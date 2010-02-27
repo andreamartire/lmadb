@@ -1,6 +1,7 @@
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import java.sql.*;
 
 import jdbc.JDBC;
@@ -45,6 +46,22 @@ public class InserimentoPersonale extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletOutputStream out = response.getOutputStream();
 		
+		out.println(
+				"<html>" +
+				"<head>" +
+					"<title>Inserisci Personale</title>" +
+				"</head>" +
+				"<body>");
+		
+		HttpSession sess = request.getSession(false);
+		if( sess == null || !sess.getAttribute("type").equals("amministratore") ) {
+			out.println(
+					"Funzione non permessa<br>" +
+					"<a href=\"login.html\"><button>Login</button></a>" +
+					"</body></html>");
+			return;
+		}
+		
 		String nome, cognome, cf, mail, username, password, tipologia;
 		int matricola;
 		try {
@@ -62,13 +79,6 @@ public class InserimentoPersonale extends HttpServlet {
 			response.sendRedirect( "http://localhost:8181/lmadb/inserimentopersonale.html" );
 			return;
 		}
-		
-		out.println(
-				"<html>" +
-				"<head>" +
-					"<title>Inserisci Personale</title>" +
-				"</head>" +
-				"<body>");
 		
 		try {
 			PreparedStatement st = conn.prepareStatement( "INSERT INTO personale VALUES ( ?, ?, ?, ? )" );

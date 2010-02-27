@@ -21,7 +21,7 @@ try {
 		%> <font size=3>Ciao <%= sess.getAttribute("name") %></font><br>
 		<a href="http://localhost:8181/lmadb/gestioneAccount.jsp">Gestione Profilo</a><br>
 		<a href="http://localhost:8181/lmadb/gestioneStanze.jsp">Gestione Stanze</a><br>
-		<a href="http://localhost:8181/lmadb/gestioneBeni.jsp">Gestione Beni<a><br>
+		<a href="http://localhost:8181/lmadb/gestioneBeni.jsp">Gestione Beni</a><br>
 		<a href="http://localhost:8181/lmadb/Logout"><button>LogOut</button></a>
 		<%
 	} else {

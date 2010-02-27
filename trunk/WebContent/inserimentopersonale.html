@@ -21,7 +21,7 @@ function check( form ) {
 		return false;
 	}
 	// controllo della mail
-	var mailRegExp = /^\w+@\w+.[a-z]+$/i;
+	var mailRegExp = /^[a-z|0-9|\.|\-|_]+@\w+.[a-z]+$/i;
 	if( !mail.match( mailRegExp ) ) {
 		alert("Indirizzo e-mail non valido");
 		return false;

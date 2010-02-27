@@ -57,7 +57,7 @@
 		Conferma Nuova Password: <input type="password" name="checkNuovaPassword"></input><br>
 		<input type="submit" name="submit" value="Cambia Password" ><br><br>
 	</form>
-	<button value="Back" action="http://localhost:8081/lamdb/addettohome.jsp"></button>
+	<a href="http://localhost:8081/lamdb/addettohome.jsp"><button>Back</button></a>
 	
 </body>
 
