@@ -1,7 +1,12 @@
 import java.io.*;
 import java.util.HashMap;
 
-/**
+/** Class <code>Sequencer</code>
+ * <p>Classe di utilità per gestire sequenze di un database.<br>
+ * Le sequenze vengono mantenute su un file dal server che ospita l'applicazione web.
+ * </p>
+ * <p>Per ottenere il prossimo valore di una sequenza invocare il metodo statico <code>nextval(nome_sequenza)</code><br>
+ * Se la sequenza richiesta non esiste viene creata e viene ritornato il primo valore.</p>
  * @author sal
  */
 public class Sequencer implements Serializable {

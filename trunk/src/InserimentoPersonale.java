@@ -49,12 +49,15 @@ public class InserimentoPersonale extends HttpServlet {
 		try {
 			nome = request.getParameter("nome");
 			cognome = request.getParameter("cogn");
-			matricola = "114654";
 			cf = request.getParameter("cf");
 			mail = request.getParameter("mail");
 			username = request.getParameter("usr");
 			password = request.getParameter("pass");
 			tipologia = request.getParameter("tipo");
+			// TODO modificare il campo matricola della tabella personale in integer
+			// matricola = Sequencer.nextval("matricole");
+			matricola = "111";
+			
 		} catch (Exception e) {
 			response.sendRedirect( "http://localhost:8181/lmadb/inserimentopersonale.html" );
 			return;
