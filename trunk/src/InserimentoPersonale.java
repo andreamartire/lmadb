@@ -45,7 +45,8 @@ public class InserimentoPersonale extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletOutputStream out = response.getOutputStream();
 		
-		String nome, cognome, cf, mail, username, password, tipologia, matricola;
+		String nome, cognome, cf, mail, username, password, tipologia;
+		int matricola;
 		try {
 			nome = request.getParameter("nome");
 			cognome = request.getParameter("cogn");
@@ -55,8 +56,7 @@ public class InserimentoPersonale extends HttpServlet {
 			password = request.getParameter("pass");
 			tipologia = request.getParameter("tipo");
 			// TODO modificare il campo matricola della tabella personale in integer
-			// matricola = Sequencer.nextval("matricole");
-			matricola = "111";
+			matricola = SequencerDB.nextval("matricole");
 			
 		} catch (Exception e) {
 			response.sendRedirect( "http://localhost:8181/lmadb/inserimentopersonale.html" );
@@ -72,7 +72,7 @@ public class InserimentoPersonale extends HttpServlet {
 		
 		try {
 			PreparedStatement st = conn.prepareStatement( "INSERT INTO personale VALUES ( ?, ?, ?, ? )" );
-			st.setString( 1, matricola );
+			st.setInt( 1, matricola );
 			st.setString( 2, cf );
 			st.setString( 3, nome );
 			st.setString( 4, cognome );
@@ -84,7 +84,7 @@ public class InserimentoPersonale extends HttpServlet {
 			st.setString( 2, password );
 			st.setString( 3, mail );
 			st.setString( 4, tipologia );
-			st.setString( 5, matricola );
+			st.setInt( 5, matricola );
 			
 			st.executeQuery();
 			
