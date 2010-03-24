@@ -1,18 +1,22 @@
 #labels Phase-Deploy,Phase-Implementation
-_Lo scopo della guida è installare il DBMS Oracle e il web-server tomcat e configurarli in modo da permettere la gestione direttamente da eclipse_
+_Lo scopo della guida è installare un DBMS, PostgreSQL (preferibile) o Oracle XE, e il web-server Apache Tomcat, e configurare un ambiente eclipse in cui lavorare_
 
 === Requisiti minimi: ===
-  * Java Development Kit - jdk
+  * Java Development Kit - jdk 
   * Eclipse for Java EE
-  * Un po di pazienza e molta attenzione
+  * Un po di pazienza
   
+<hr> 
+
 = DBMS =
 
-=== Installazione di oracle: ===
+== _Oracle 10G XE_ == 
+
+=== Installazione ===
     Windows -> scaricare e installare <a href="http://download.oracle.com/otn/nt/oracle10g/xe/10201/OracleXE.exe">questo exe</a> <br>
     GNU/Linux -> scaricare <a href="http://download.oracle.com/otn/linux/oracle10g/xe/10201/oracle-xe_10.2.0.1-1.0_i386.deb>questo deb</a>
 
-=== Configurare oracle === 
+=== Configurazione === 
     GNU/Linux -> `sudo /etc/init.d/oracle-xe configure` inserite una pass, infine scegliete se avviarlo automaticamente o no<br>
     Windows -> durante l'installazione viene chiesta la pass e viene visualizzata una finestra con le info necessarie
 
@@ -21,24 +25,70 @@ _Lo scopo della guida è installare il DBMS Oracle e il web-server tomcat e conf
     Windows -> viene installato come servizio quindi parte sempre all'avvio..
 
 === Primo avvio ===
-nel vostro browser preferito andate all'indirizzo: http://localhost:8080/apex <br>
-appare la pagina di login in oracle, inserite "system" come username e come password quella scelta in fase di configurazione <br>
-ora siete nella pagina di gestione del dbms. Administration -> DataBase Users -> Create per creare il vostro account <br>
-scegliete una username e una password e spuntate la casellina DBA dopo di che cliccate su create <br>
-ora effettuate il logout e poi il login con l'account appena creato <br>
+    nel vostro browser preferito andate all'indirizzo: http://localhost:8080/apex <br>
+    appare la pagina di login in oracle, inserite "system" come username e come password quella scelta in fase di configurazione <br>
+    ora siete nella pagina di gestione del dbms. Administration -> DataBase Users -> Create per creare il vostro account <br>
+    scegliete una username e una password e spuntate la casellina DBA dopo di che cliccate su create <br>
+    ora effettuate il logout e poi il login con l'account appena creato <br>
 
-questa è l'interfaccia da DBA, per creare tabelle graficamente andate in Object Browser -> Create, per scrivere codice SQL andate in SQL -> SQL Commands <br>
+    questa è l'interfaccia da DBA, per creare tabelle graficamente andate in Object Browser -> Create, per scrivere codice SQL andate in SQL -> SQL Commands <br>
 
-per caricare lo script di creazione del nostro db andate in SQL -> SQL Scripts <br>
-qui scegliete la View "Details" e cliccate su Go <br>
-dovreste vedere "no data found"...per caricare lo script cliccate sul pulsante Upload, sfoglia per arrivare al file e poi Upload <br>
-ora trovate il file nella tabella, cliccate sul semaforino Run e poi confermate col pulsante Run <br>
-per vedere il risultato dell'importazione cliccate su View Results<br>
-se tutto è andato bene dovreste vedere: Statement Processed 16, successful 16, With Errors 0 <br>
+    per caricare lo script di creazione del nostro db andate in SQL -> SQL Scripts <br>
+    qui scegliete la View "Details" e cliccate su Go <br>
+    dovreste vedere "no data found"...per caricare lo script cliccate sul pulsante Upload, sfoglia per arrivare al file e poi Upload <br>
+    ora trovate il file nella tabella, cliccate sul semaforino Run e poi confermate col pulsante Run <br>
+    per vedere il risultato dell'importazione cliccate su View Results<br>
+    se tutto è andato bene dovreste vedere: With Errors 0 <br>
 
-a questo punto il db è caricato sul server oracle...per vederlo potete tornare alla home e scegliere Object Browser
-  
-  
+    a questo punto il db è caricato sul server oracle...per vederlo potete tornare alla home e scegliere Object Browser
+ 
+<br><br>
+
+== _PostgreSQL 8.4_ ==
+
+=== Installazione ===
+    
+    GNU/Linux -> `$ sudo apt-get install postgresql phppgadmin`
+	
+        _postgresql è l'applicazione dbms vera e propria, phppgadmin è l'applicativo web per gestire il dbms, qualcosa di simile all'apex di oracle._
+	  
+        <b>NB: riavviare il sistema dopo l'installazione anche se non viene chiesto</b>
+	  
+	  
+=== Configurazione e Creazione database ===
+
+    Impostazione di una password per il superuser postgres: `$ sudo passwd postgres`
+	
+    Login come superutente: `$ su postgres`
+		
+    Lanciamo il prompt di comandi SQL di postgres: `$ psql`
+		
+    Creiamo il nostro utente dba: `# CREATE USER basididati WITH PASSWORD 'basididati' CREATEDB;`
+		
+    Creiamo il nostro database: `# CREATE DATABASE database WITH OWNER basididati;`
+		
+    Usciamo da psql: `# \q`
+			
+    Logout postgres: `$ exit`
+
+
+=== Importazione script SQL per la definizione del database ===
+
+    Entrare nell'ambiente phpPgAdmin da browser:
+        http://localhost/phppgadmin
+		
+    Nel menu a sinistra cliccare su "PostgreSQL"
+	
+    Cliccare su "database"
+	
+    Nella pagina che appare cliccare su "SQL" nella barra delle icone
+	
+    Cliccare su "Sfoglia" e selezionare lo script SQL da caricare
+	
+    Cliccare su "Esegui"
+	
+<hr> 
+
 = TOMCAT =
   
 === Ottenere Tomcat 6.x ===
@@ -98,7 +148,7 @@ una pagina dal titolo "Test Tomcat" e contenente "Prova andata a buon fine"
   		Per Oracle copiare il jar <a href="http://download.oracle.com/otn/utilities_drivers/jdbc/10204/ojdbc14.jar">ojdbc14.jar</a><br>
   		Per postgreSQL copiare il jar <a href="http://jdbc.postgresql.org/download/postgresql-8.4-701.jdbc4.jar">postgresql-8.4-701.jdbc4.jar</a>
 		
-		_Opzionale, per la connessione via context_
+		_OPZIONALE: se non volete creare la connessione col classico Class.forName etc_<br>
 		Aprire il file context.xml nella cartella conf di tomcat con un editor di testo e sostituire la
 		parte interna al tag <context> </context> con la seguente:<br>
 {{{
@@ -108,7 +158,7 @@ url="jdbc:oracle:thin:@localhost:1521:xe" username="TUOUSERNAME"/>
 
 <Resource auth="Container" driverClassName="org.postgresql.Driver" maxActive="4" maxIdle="2" 
 maxWait="5000" name="jdbc/postgres" password="TUAPASSWORD" type="javax.sql.DataSource" 
-url="jdbc:postgresql://localhost/sal" username="postgres"/>
+url="jdbc:postgresql://localhost/database" username="TUOUSERNAME"/>
 }}}
 		Salvare il file e passare ad eclipse.
 
@@ -141,12 +191,12 @@ PrintWriter out = response.getWriter();
 
 out.println( 
 		"<html>" +
-		"<head>" +
-		"<title>Test Servlet</title>" +
-		"</head>" +
-		"<body>" +
-		"<center><font size=5>Test Servlet ok!</font><center>" +
-		"</body>" +
+		   "<head>" +
+		      "<title>Test Servlet</title>" +
+		   "</head>" +
+		   "<body>" +
+		      "<center><font size=4>Test Servlet ok!</font><center>" +
+		   "</body>" +
 		"</html>" 
 );
 }}}
@@ -162,25 +212,3 @@ Se tutto è andato bene apparirà una pagina nel web browser con il test Test Se
 
 
 <p><p>
-
-_Solo per il progetto lmadb:_<p>
-1. *Importare il progetto lmadb*
-  * installare Subclipse:
-    In eclipse andate su "help" -> "install new software". Cliccate su Add e mettete come nome Subclipse e come location: http://subclipse.tigris.org/update_1.6.x <br>
-    si caricherà il repository, quindi spuntate la casella Subclipse e installate (riavviate eclipse alla fine). 
-
-  * New -> SVN -> Checkout Project from SVN
-  * "Create a new Repository location"
-  * https://lmadb.googlecode.com/svn/trunk 
-  * vi chiederà di inserire il vostro username e la vostra password googlecode (la pass si trova in "Profile" -> "Settings" da http://code.google.com)
-  
-2. *Stoppare il server tomcat se avviato* 
-  * Windows: click destro sull'icona di tomcat nella barra delle applicazione, e selezionare Stop Service; 
-    Per evitare che si avvii automaticamente: click destro -> Configure -> Startup type: Manual -> Stop -> Ok
-  * GNU/Linux: eseguire lo script shutdown.sh
-
-3. *Avviare Oracle*. Aprire la servlet Login.java nel default package del progetto ed eseguirla: 
-	click destro sulla classe -> Run As -> Run on Server.
-	Nella finestra che appare spuntare "Always use this server when running this project" -> finish<br>
-	Inserire una username e una password nel form che dovrebbe apparire e vedere
-	il risultato che dovrebbe essere una nuova pagina. 
