@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root-element SYSTEM "doctype.dtd">
+
+<db_import_export>
+  <table name="sequences">
+    <row>
+      <data name="name" type="12">dotazioni</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">1</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">assegnazioni</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">1</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">matricole</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">8</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">allocazioni</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">7</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">richieste</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">11</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">sottoCategoriaBene</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">7</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">bando</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">2</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">SA</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">3</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">MA</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">2</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">bene</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">7</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">MB</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">2</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">stanza</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">4</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+    <row>
+      <data name="name" type="12">ubicazione</data>
+      <data name="startval" type="4">0</data>
+      <data name="incr" type="4">1</data>
+      <data name="minval" type="4">-2147483648</data>
+      <data name="maxval" type="4">2147483647</data>
+      <data name="currval" type="4">3</data>
+      <data name="cycle" type="1">F</data>
+    </row>
+  </table>
+  <table name="personale">
+    <row>
+      <data name="matricola" type="4">1</data>
+      <data name="codice_fiscale" type="12">rssnnt80l14b219c</data>
+      <data name="nome" type="12">Antonio</data>
+      <data name="cognome" type="12">Rossi</data>
+    </row>
+    <row>
+      <data name="matricola" type="4">2</data>
+      <data name="codice_fiscale" type="12">vrdnnt75c09d122w</data>
+      <data name="nome" type="12">angelo</data>
+      <data name="cognome" type="12">verdi</data>
+    </row>
+    <row>
+      <data name="matricola" type="4">3</data>
+      <data name="codice_fiscale" type="12">mrtnrd88l23d122s</data>
+      <data name="nome" type="12">andrea</data>
+      <data name="cognome" type="12">martiro</data>
+    </row>
+    <row>
+      <data name="matricola" type="4">4</data>
+      <data name="codice_fiscale" type="12">nrelns80b19c312d</data>
+      <data name="nome" type="12">alfonso</data>
+      <data name="cognome" type="12">neri</data>
+    </row>
+    <row>
+      <data name="matricola" type="4">5</data>
+      <data name="codice_fiscale" type="12">bncgpp85b18c919w</data>
+      <data name="nome" type="12">biagio</data>
+      <data name="cognome" type="12">bianchi</data>
+    </row>
+    <row>
+      <data name="matricola" type="4">6</data>
+      <data name="codice_fiscale" type="12">lnegpp83s12c123a</data>
+      <data name="nome" type="12">giuseppe</data>
+      <data name="cognome" type="12">leone</data>
+    </row>
+    <row>
+      <data name="matricola" type="4">7</data>
+      <data name="codice_fiscale" type="12">gstmrt88b12c123d</data>
+      <data name="nome" type="12">Umberto</data>
+      <data name="cognome" type="12">Agosto</data>
+    </row>
+    <row>
+      <data name="matricola" type="4">8</data>
+      <data name="codice_fiscale" type="12">lrosvt88l96h919t</data>
+      <data name="nome" type="12">salvatore</data>
+      <data name="cognome" type="12">loria</data>
+    </row>
+  </table>
+  <table name="account">
+    <row>
+      <data name="username" type="12">admin</data>
+      <data name="password" type="12">asd</data>
+      <data name="email" type="12">deadlyomen17@gmail.com</data>
+      <data name="data_registrazione" type="91">2010-02-10</data>
+      <data name="tipologia" type="12">amministratore</data>
+      <data name="personale" type="4" />
+    </row>
+    <row>
+      <data name="username" type="12">antonio</data>
+      <data name="password" type="12">asd</data>
+      <data name="email" type="12">rossi@mail.it</data>
+      <data name="data_registrazione" type="91">2010-04-03</data>
+      <data name="tipologia" type="12">dipendente</data>
+      <data name="personale" type="4">1</data>
+    </row>
+    <row>
+      <data name="username" type="12">verdi</data>
+      <data name="password" type="12">asd</data>
+      <data name="email" type="12">verdi@mail.it</data>
+      <data name="data_registrazione" type="91">2010-04-03</data>
+      <data name="tipologia" type="12">dipendente</data>
+      <data name="personale" type="4">2</data>
+    </row>
+    <row>
+      <data name="username" type="12">andrea</data>
+      <data name="password" type="12">asd</data>
+      <data name="email" type="12">andrea@mail.it</data>
+      <data name="data_registrazione" type="91">2010-04-03</data>
+      <data name="tipologia" type="12">dipendente</data>
+      <data name="personale" type="4">3</data>
+    </row>
+    <row>
+      <data name="username" type="12">addetto</data>
+      <data name="password" type="12">asd</data>
+      <data name="email" type="12">sasaloria@hotmail.com</data>
+      <data name="data_registrazione" type="91">2010-04-03</data>
+      <data name="tipologia" type="12">addetto amministrativo</data>
+      <data name="personale" type="4">4</data>
+    </row>
+    <row>
+      <data name="username" type="12">bianchi</data>
+      <data name="password" type="12">asd</data>
+      <data name="email" type="12">bianchi@mail.it</data>
+      <data name="data_registrazione" type="91">2010-04-03</data>
+      <data name="tipologia" type="12">dipendente</data>
+      <data name="personale" type="4">5</data>
+    </row>
+    <row>
+      <data name="username" type="12">master85</data>
+      <data name="password" type="12">asd</data>
+      <data name="email" type="12">leone@mail.it</data>
+      <data name="data_registrazione" type="91">2010-04-03</data>
+      <data name="tipologia" type="12">dipendente</data>
+      <data name="personale" type="4">6</data>
+    </row>
+    <row>
+      <data name="username" type="12">umberto</data>
+      <data name="password" type="12">asd</data>
+      <data name="email" type="12">zell_great@hotmail.com</data>
+      <data name="data_registrazione" type="91">2010-04-03</data>
+      <data name="tipologia" type="12">dipendente</data>
+      <data name="personale" type="4">7</data>
+    </row>
+    <row>
+      <data name="username" type="12">sal</data>
+      <data name="password" type="12">asd</data>
+      <data name="email" type="12">deadlyomen17@gmail.com</data>
+      <data name="data_registrazione" type="91">2010-04-06</data>
+      <data name="tipologia" type="12">dipendente</data>
+      <data name="personale" type="4">8</data>
+    </row>
+  </table>
+  <table name="fornitore">
+    <row>
+      <data name="partita_iva" type="12">00102456210</data>
+      <data name="nome_organizzazione" type="12">inforIT</data>
+      <data name="tipologia" type="12">azienda</data>
+      <data name="telefono" type="12">0962-24365</data>
+      <data name="email" type="12">infor@mail.it</data>
+      <data name="indirizzo" type="12">caraffa, via acqua</data>
+    </row>
+    <row>
+      <data name="partita_iva" type="12">11021457621</data>
+      <data name="nome_organizzazione" type="12">informaticaAz</data>
+      <data name="tipologia" type="12">azienda</data>
+      <data name="telefono" type="12">0984-234123</data>
+      <data name="email" type="12">inforaz@mail.it</data>
+      <data name="indirizzo" type="12">san giovanni in f</data>
+    </row>
+    <row>
+      <data name="partita_iva" type="12">11111235544</data>
+      <data name="nome_organizzazione" type="12">libri and libri</data>
+      <data name="tipologia" type="12">azienda</data>
+      <data name="telefono" type="12">0965-21232</data>
+      <data name="email" type="12">libri@mail.it</data>
+      <data name="indirizzo" type="12">cosenza, corso mazzini</data>
+    </row>
+    <row>
+      <data name="partita_iva" type="12">11236547898</data>
+      <data name="nome_organizzazione" type="12">c3 arredamenti</data>
+      <data name="tipologia" type="12">azienda</data>
+      <data name="telefono" type="12">0984-982130</data>
+      <data name="email" type="12">c3@mail.it</data>
+      <data name="indirizzo" type="12">rende</data>
+    </row>
+  </table>
+  <table name="categoriabene">
+    <row>
+      <data name="sigla" type="12">SA</data>
+      <data name="nome" type="12">Strumenti e Attrezzature</data>
+    </row>
+    <row>
+      <data name="sigla" type="12">MB</data>
+      <data name="nome" type="12">Materiale Bibliografico</data>
+    </row>
+    <row>
+      <data name="sigla" type="12">MA</data>
+      <data name="nome" type="12">Mobili e Arredi</data>
+    </row>
+  </table>
+  <table name="sottocategoriabene">
+    <row>
+      <data name="codice" type="12">st2</data>
+      <data name="nome" type="12">notebook</data>
+      <data name="categoria_bene" type="12">SA</data>
+    </row>
+    <row>
+      <data name="codice" type="12">st3</data>
+      <data name="nome" type="12">stampanti</data>
+      <data name="categoria_bene" type="12">SA</data>
+    </row>
+    <row>
+      <data name="codice" type="12">st4</data>
+      <data name="nome" type="12">manuali</data>
+      <data name="categoria_bene" type="12">MB</data>
+    </row>
+    <row>
+      <data name="codice" type="12">st5</data>
+      <data name="nome" type="12">libri</data>
+      <data name="categoria_bene" type="12">MB</data>
+    </row>
+    <row>
+      <data name="codice" type="12">st6</data>
+      <data name="nome" type="12">scrivanie</data>
+      <data name="categoria_bene" type="12">MA</data>
+    </row>
+    <row>
+      <data name="codice" type="12">st7</data>
+      <data name="nome" type="12">sedie</data>
+      <data name="categoria_bene" type="12">MA</data>
+    </row>
+    <row>
+      <data name="codice" type="12">st1</data>
+      <data name="nome" type="12">desktopPC</data>
+      <data name="categoria_bene" type="12">SA</data>
+    </row>
+  </table>
+  <table name="bene">
+    <row>
+      <data name="numero_inventario_generico" type="4">1</data>
+      <data name="numero_inventario_seriale" type="12">1/SA</data>
+      <data name="importo" type="4">899</data>
+      <data name="data_acquisto" type="91">2010-03-01</data>
+      <data name="garanzia" type="12">1 anno</data>
+      <data name="data_attivazione" type="91">2010-03-01</data>
+      <data name="data_scadenza" type="91" />
+      <data name="targhetta" type="12">alienware mx400</data>
+      <data name="descrizione" type="12">pc desktop</data>
+      <data name="conforme" type="1">S</data>
+      <data name="obsoleto" type="1">N</data>
+      <data name="sotto_categoria_bene" type="12">st1</data>
+      <data name="fornitore" type="12">00102456210</data>
+    </row>
+    <row>
+      <data name="numero_inventario_generico" type="4">2</data>
+      <data name="numero_inventario_seriale" type="12">2/SA</data>
+      <data name="importo" type="4">899</data>
+      <data name="data_acquisto" type="91">2010-03-10</data>
+      <data name="garanzia" type="12">1 anno</data>
+      <data name="data_attivazione" type="91">2010-03-10</data>
+      <data name="data_scadenza" type="91" />
+      <data name="targhetta" type="12">acer 5920</data>
+      <data name="descrizione" type="12">notebook 15 pollici</data>
+      <data name="conforme" type="1">S</data>
+      <data name="obsoleto" type="1">N</data>
+      <data name="sotto_categoria_bene" type="12">st2</data>
+      <data name="fornitore" type="12">11021457621</data>
+    </row>
+    <row>
+      <data name="numero_inventario_generico" type="4">3</data>
+      <data name="numero_inventario_seriale" type="12">3/SA</data>
+      <data name="importo" type="4">269</data>
+      <data name="data_acquisto" type="91">2010-03-01</data>
+      <data name="garanzia" type="12">1 anno</data>
+      <data name="data_attivazione" type="91">2010-03-01</data>
+      <data name="data_scadenza" type="91" />
+      <data name="targhetta" type="12">epson d123</data>
+      <data name="descrizione" type="12">stampante laser</data>
+      <data name="conforme" type="1">S</data>
+      <data name="obsoleto" type="1">N</data>
+      <data name="sotto_categoria_bene" type="12">st3</data>
+      <data name="fornitore" type="12">11021457621</data>
+    </row>
+    <row>
+      <data name="numero_inventario_generico" type="4">4</data>
+      <data name="numero_inventario_seriale" type="12">1/MA</data>
+      <data name="importo" type="4">400</data>
+      <data name="data_acquisto" type="91">2010-03-10</data>
+      <data name="garanzia" type="12" />
+      <data name="data_attivazione" type="91" />
+      <data name="data_scadenza" type="91" />
+      <data name="targhetta" type="12">scrivania ufficio</data>
+      <data name="descrizione" type="12">scrivania da ufficio</data>
+      <data name="conforme" type="1">S</data>
+      <data name="obsoleto" type="1">N</data>
+      <data name="sotto_categoria_bene" type="12">st6</data>
+      <data name="fornitore" type="12">11236547898</data>
+    </row>
+    <row>
+      <data name="numero_inventario_generico" type="4">5</data>
+      <data name="numero_inventario_seriale" type="12">2/MA</data>
+      <data name="importo" type="4">99</data>
+      <data name="data_acquisto" type="91">2010-03-10</data>
+      <data name="garanzia" type="12" />
+      <data name="data_attivazione" type="91" />
+      <data name="data_scadenza" type="91" />
+      <data name="targhetta" type="12">sedia ufficio</data>
+      <data name="descrizione" type="12">sedia ufficio</data>
+      <data name="conforme" type="1">S</data>
+      <data name="obsoleto" type="1">N</data>
+      <data name="sotto_categoria_bene" type="12">st7</data>
+      <data name="fornitore" type="12">11236547898</data>
+    </row>
+    <row>
+      <data name="numero_inventario_generico" type="4">6</data>
+      <data name="numero_inventario_seriale" type="12">1/MB</data>
+      <data name="importo" type="4">45</data>
+      <data name="data_acquisto" type="91">2010-03-10</data>
+      <data name="garanzia" type="12" />
+      <data name="data_attivazione" type="91" />
+      <data name="data_scadenza" type="91" />
+      <data name="targhetta" type="12">c++ for dummies</data>
+      <data name="descrizione" type="12">manuale c++</data>
+      <data name="conforme" type="1">S</data>
+      <data name="obsoleto" type="1">N</data>
+      <data name="sotto_categoria_bene" type="12">st4</data>
+      <data name="fornitore" type="12">11111235544</data>
+    </row>
+    <row>
+      <data name="numero_inventario_generico" type="4">7</data>
+      <data name="numero_inventario_seriale" type="12">2/MB</data>
+      <data name="importo" type="4">39</data>
+      <data name="data_acquisto" type="91">2010-03-10</data>
+      <data name="garanzia" type="12" />
+      <data name="data_attivazione" type="91" />
+      <data name="data_scadenza" type="91" />
+      <data name="targhetta" type="12">java 2 EE</data>
+      <data name="descrizione" type="12">manuale java EE</data>
+      <data name="conforme" type="1">S</data>
+      <data name="obsoleto" type="1">N</data>
+      <data name="sotto_categoria_bene" type="12">st4</data>
+      <data name="fornitore" type="12">11111235544</data>
+    </row>
+  </table>
+  <table name="bando">
+    <row>
+      <data name="codice" type="12">bando1</data>
+      <data name="legge" type="12">legge 201/2002</data>
+      <data name="denominazione" type="12">primo bando</data>
+      <data name="data_bando" type="91">2010-03-10</data>
+      <data name="percentuale_finanziamento" type="12">30</data>
+    </row>
+    <row>
+      <data name="codice" type="12">bando2</data>
+      <data name="legge" type="12">legge 204/2010</data>
+      <data name="denominazione" type="12">secondo bando</data>
+      <data name="data_bando" type="91">2010-03-30</data>
+      <data name="percentuale_finanziamento" type="12">25</data>
+    </row>
+  </table>
+  <table name="finanziamento" />
+  <table name="gruppodilavoro">
+    <row>
+      <data name="codice" type="12">gruppo1</data>
+      <data name="denominazione" type="12">ricerca e sviluppo</data>
+    </row>
+    <row>
+      <data name="codice" type="12">gruppo2</data>
+      <data name="denominazione" type="12">marketing e vendite</data>
+    </row>
+    <row>
+      <data name="codice" type="12">gruppo3</data>
+      <data name="denominazione" type="12">publiche relazioni</data>
+    </row>
+    <row>
+      <data name="codice" type="12">gruppo4</data>
+      <data name="denominazione" type="12">sviluppo software</data>
+    </row>
+  </table>
+  <table name="richiesta">
+    <row>
+      <data name="codice" type="4">9</data>
+      <data name="personale" type="4">8</data>
+      <data name="sotto_categoria_bene" type="12">st2</data>
+      <data name="data" type="91">2010-04-06</data>
+      <data name="motivazione" type="12">richiesta notebook</data>
+      <data name="esito" type="1">N</data>
+    </row>
+    <row>
+      <data name="codice" type="4">10</data>
+      <data name="personale" type="4">8</data>
+      <data name="sotto_categoria_bene" type="12">st1</data>
+      <data name="data" type="91">2010-04-06</data>
+      <data name="motivazione" type="12">richiesta pcdesktop</data>
+      <data name="esito" type="1">N</data>
+    </row>
+    <row>
+      <data name="codice" type="4">11</data>
+      <data name="personale" type="4">8</data>
+      <data name="sotto_categoria_bene" type="12">st3</data>
+      <data name="data" type="91">2010-04-06</data>
+      <data name="motivazione" type="12">richiesta stampante</data>
+      <data name="esito" type="1">S</data>
+    </row>
+    <row>
+      <data name="codice" type="4">7</data>
+      <data name="personale" type="4">7</data>
+      <data name="sotto_categoria_bene" type="12">st2</data>
+      <data name="data" type="91">2010-04-06</data>
+      <data name="motivazione" type="12">richiesta notebook</data>
+      <data name="esito" type="1">N</data>
+    </row>
+    <row>
+      <data name="codice" type="4">8</data>
+      <data name="personale" type="4">7</data>
+      <data name="sotto_categoria_bene" type="12">st4</data>
+      <data name="data" type="91">2010-04-06</data>
+      <data name="motivazione" type="12">richiesta manuale c++</data>
+      <data name="esito" type="1">S</data>
+    </row>
+    <row>
+      <data name="codice" type="4">3</data>
+      <data name="personale" type="4">6</data>
+      <data name="sotto_categoria_bene" type="12">st1</data>
+      <data name="data" type="91">2010-04-03</data>
+      <data name="motivazione" type="12">mi serve un pc</data>
+      <data name="esito" type="1">S</data>
+    </row>
+    <row>
+      <data name="codice" type="4">2</data>
+      <data name="personale" type="4">3</data>
+      <data name="sotto_categoria_bene" type="12">st2</data>
+      <data name="data" type="91">2010-04-03</data>
+      <data name="motivazione" type="12">ho bisogno di un pc</data>
+      <data name="esito" type="1">S</data>
+    </row>
+    <row>
+      <data name="codice" type="4">1</data>
+      <data name="personale" type="4">1</data>
+      <data name="sotto_categoria_bene" type="12">st2</data>
+      <data name="data" type="91">2010-04-03</data>
+      <data name="motivazione" type="12">ho bisogno di un notebook</data>
+      <data name="esito" type="1">N</data>
+    </row>
+    <row>
+      <data name="codice" type="4">5</data>
+      <data name="personale" type="4">1</data>
+      <data name="sotto_categoria_bene" type="12">st4</data>
+      <data name="data" type="91">2010-04-03</data>
+      <data name="motivazione" type="12">mi serve un manuale java</data>
+      <data name="esito" type="1">-</data>
+    </row>
+    <row>
+      <data name="codice" type="4">4</data>
+      <data name="personale" type="4">1</data>
+      <data name="sotto_categoria_bene" type="12">st4</data>
+      <data name="data" type="91">2010-04-03</data>
+      <data name="motivazione" type="12">avrei bisogno di un manuale c++</data>
+      <data name="esito" type="1">S</data>
+    </row>
+    <row>
+      <data name="codice" type="4">6</data>
+      <data name="personale" type="4">7</data>
+      <data name="sotto_categoria_bene" type="12">st1</data>
+      <data name="data" type="91">2010-04-06</data>
+      <data name="motivazione" type="12">richiesta di un pc desktop</data>
+      <data name="esito" type="1">S</data>
+    </row>
+  </table>
+  <table name="stanza">
+    <row>
+      <data name="codice" type="12">stanza1</data>
+      <data name="denominazione" type="12">common room</data>
+      <data name="posizione" type="12">1</data>
+      <data name="note" type="12">stanza comune</data>
+    </row>
+    <row>
+      <data name="codice" type="12">stanza2</data>
+      <data name="denominazione" type="12">conferenze</data>
+      <data name="posizione" type="12">2</data>
+      <data name="note" type="12">sala conferenze</data>
+    </row>
+    <row>
+      <data name="codice" type="12">stanza3</data>
+      <data name="denominazione" type="12">ufficio1</data>
+      <data name="posizione" type="12">34</data>
+      <data name="note" type="12">ufficio direttore</data>
+    </row>
+    <row>
+      <data name="codice" type="12">stanza4</data>
+      <data name="denominazione" type="12">ufficio2</data>
+      <data name="posizione" type="12">35</data>
+      <data name="note" type="12">ufficio amministratore</data>
+    </row>
+  </table>
+  <table name="dotazione">
+    <row>
+      <data name="codice" type="12">dt1</data>
+      <data name="personale" type="4">7</data>
+      <data name="bene" type="4">1</data>
+      <data name="data_inizio" type="91">2010-03-10</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+      <data name="note" type="12">pc desktop assegnato</data>
+    </row>
+  </table>
+  <table name="assegnazione">
+    <row>
+      <data name="codice" type="12">ass1</data>
+      <data name="gruppo_di_lavoro" type="12">gruppo2</data>
+      <data name="bene" type="4">3</data>
+      <data name="data_inizio" type="91">2010-03-10</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+      <data name="note" type="12" />
+    </row>
+  </table>
+  <table name="allocazione">
+    <row>
+      <data name="codice" type="12">1</data>
+      <data name="personale" type="4">7</data>
+      <data name="gruppo_di_lavoro" type="12">gruppo4</data>
+      <data name="data_inizio" type="91">2010-03-01</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+    </row>
+    <row>
+      <data name="codice" type="12">2</data>
+      <data name="personale" type="4">7</data>
+      <data name="gruppo_di_lavoro" type="12">gruppo4</data>
+      <data name="data_inizio" type="91">2010-02-01</data>
+      <data name="data_fine" type="91">2010-03-01</data>
+    </row>
+    <row>
+      <data name="codice" type="12">3</data>
+      <data name="personale" type="4">6</data>
+      <data name="gruppo_di_lavoro" type="12">gruppo4</data>
+      <data name="data_inizio" type="91">2010-03-01</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+    </row>
+    <row>
+      <data name="codice" type="12">4</data>
+      <data name="personale" type="4">3</data>
+      <data name="gruppo_di_lavoro" type="12">gruppo1</data>
+      <data name="data_inizio" type="91">2010-02-01</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+    </row>
+    <row>
+      <data name="codice" type="12">5</data>
+      <data name="personale" type="4">2</data>
+      <data name="gruppo_di_lavoro" type="12">gruppo1</data>
+      <data name="data_inizio" type="91">2010-02-01</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+    </row>
+    <row>
+      <data name="codice" type="12">6</data>
+      <data name="personale" type="4">1</data>
+      <data name="gruppo_di_lavoro" type="12">gruppo2</data>
+      <data name="data_inizio" type="91">2010-03-01</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+    </row>
+    <row>
+      <data name="codice" type="12">7</data>
+      <data name="personale" type="4">5</data>
+      <data name="gruppo_di_lavoro" type="12">gruppo2</data>
+      <data name="data_inizio" type="91">2010-02-01</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+    </row>
+  </table>
+  <table name="ubicazione">
+    <row>
+      <data name="codice" type="12">1</data>
+      <data name="bene" type="4">1</data>
+      <data name="stanza" type="12">stanza4</data>
+      <data name="data_inizio" type="91">2010-03-10</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+    </row>
+    <row>
+      <data name="codice" type="12">2</data>
+      <data name="bene" type="4">2</data>
+      <data name="stanza" type="12">stanza3</data>
+      <data name="data_inizio" type="91">2010-03-10</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+    </row>
+    <row>
+      <data name="codice" type="12">3</data>
+      <data name="bene" type="4">3</data>
+      <data name="stanza" type="12">stanza4</data>
+      <data name="data_inizio" type="91">2010-03-10</data>
+      <data name="data_fine" type="91">2010-04-10</data>
+    </row>
+  </table>
+  <table name="postazione" />
+</db_import_export>
+

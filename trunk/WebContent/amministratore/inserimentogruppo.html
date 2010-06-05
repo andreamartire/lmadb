@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Creazione Gruppo</title>
+
+<link rel="stylesheet" type="text/css" href="../style.css" />
+<script type="text/javascript">
+/** 
+ * Funzione di controllo della correttezza dei dati inseriti
+ */
+function check( form ) {
+	var codice = form.codice.value;
+	var nome = form.nome.value;
+	// controllo del codice
+	if( codice == "" ) {
+		alert("Inserire il codice del gruppo");
+		return false;
+	}
+	// controllo della denominazione
+	if( nome == "" ) {
+		alert("Inserire la denominazione del gruppo");
+		return false;
+	}
+	return true;
+}
+</script>
+
+</head>
+<body>
+	
+	<center><i><font size="5">Profilo Amministratore</font></i></center><hr>
+	
+	<p><i><font size="4">Creazione gruppo di lavoro</font></i></p>
+	
+	<form action="../InserimentoGruppo" method="post"
+		onsubmit="return check(this)">
+		<table cellspacing="5">
+			<tr>
+				<td align="right">Codice*:</td>
+				<td><input type="text" name="codice" size="50"/></td>
+			</tr>
+			<tr>
+				<td align="right">Denominazione*:</td>
+				<td><input type="text" name="nome" size="50"/></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Crea"></td>
+			</tr>
+		</table>
+	</form>
+	
+	<p>
+		<a href="gestionegruppi.jsp"><button>Indietro</button></a>
+	</p>
+</body>
+</html>
