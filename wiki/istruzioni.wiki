@@ -1,0 +1,24 @@
+== Istruzioni per il download via SVN del progetto ==
+
+Prerequisiti:
+  * Java JDK (SE) -> *[http://java.sun.com/javase/downloads/widget/jdk6.jsp Download]* 
+  * Eclipse for Java EE -> *[http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/galileosr2 Download]*
+  * Plugin Eclipse per Subversioning (es: *[http://subclipse.tigris.org/servlets/ProjectProcess?pageID=p4wYuA Subclipse*]*, *[http://www.eclipse.org/subversive/downloads.php Subversive]*)
+  * Oracle/PostgreSQL + Tomcat v6.0 -> *[http://code.google.com/p/lmadb/wiki/ConfigurazioneTomcatOraclePostgres Guida]*
+
+
+==== SVN checkout ====
+
+Eclipse -> File -> New -> Project -> SVN -> Project from SVN<br>
+Create a new repository location
+  URL: http://lmadb.googlecode.com/svn
+_Next_
+
+Select resource 
+  URL: http://lmadb.googlecode.com/svn/trunk
+  Revision: Head revision
+_Finish_
+
+Checkout as a project with tha name specified
+  name: lmadb
+_Finish_
