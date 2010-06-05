@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT db_import_export (table)*>
+<!ELEMENT table (row)*>
+<!ELEMENT row (data)*>
+<!ELEMENT data (#PCDATA)>
+<!ATTLIST table name CDATA #REQUIRED>
+<!ATTLIST data name CDATA #REQUIRED>
+<!ATTLIST data type CDATA #REQUIRED>

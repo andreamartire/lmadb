@@ -1,0 +1,7 @@
+# NB: inserire gli script in /usr/bin e renderli eseguibili
+
+# controllo scadenze beni ogni giorno alle 13.30
+30 13 	* * * 	root	checkScadenze.sh
+
+# invio report beni inventariati ogni 1° del mese a mezzanotte
+0 0 	1 * * 	root	report.sh
