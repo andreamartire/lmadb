@@ -2,8 +2,8 @@
 _Lo scopo della guida è installare un DBMS, PostgreSQL (preferibile) o Oracle XE, e il web-server Apache Tomcat, e configurare un ambiente eclipse in cui lavorare_
 
 === Requisiti minimi: ===
-  * Java Development Kit - jdk 
-  * Eclipse for Java EE
+  * <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Development Kit - jdk </a>
+  * <a href="http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/helios/SR1/eclipse-jee-helios-SR1-linux-gtk.tar.gz">Eclipse for Java EE</a>
   * Un po di pazienza
   
 <hr> 
